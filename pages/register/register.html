@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <title>Student Registration Form</title>
+
+</head>
+
+<body>
+<h3>STUDENT REGISTRATION FORM</h3>
+
+
+<table align="center" cellpadding = "10" ng-app="myApp" ng-controller="registerController">
+
+    <!----- First Name ---------------------------------------------------------->
+    <tr>
+        <td>First Name</td>
+        <td>
+            <input
+                    type="text"
+                    maxlength="30"
+                    placeholder="Enter First name"
+                    ng-model="firstname"/>
+            (max 30 characters a-z and A-Z)
+            <h1>{{firstname}}</h1>
+        </td>
+    </tr>
+
+    <!----- Last Name ---------------------------------------------------------->
+    <tr>
+        <td>Last Name</td>
+        <td>
+            <input
+                    type="text"
+                    maxlength="30"
+                    placeholder="Enter Last name"
+                    ng-model="lastname"/>
+            (max 30 characters a-z and A-Z)
+            <h1>{{lastname}}</h1>
+        </td>
+    </tr>
+
+    <!----- User Name ---------------------------------------------------------->
+    <tr>
+        <td>User Name</td>
+        <td>
+            <input
+                    type="text"
+                    maxlength="30"
+                    placeholder="Enter Username"
+                    ng-model="username"/>
+            (max 30 characters a-z and A-Z)
+            <h1>{{username}}</h1>
+        </td>
+    </tr>
+
+    <!----- Password ---------------------------------------------------------->
+    <tr>
+        <td>Password</td>
+        <td>
+            <input
+                    type="password"
+                    id="psw"
+                    placeholder="Enter Password"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                    ng-model="password"
+                    required/>
+            <h1>{{password}}</h1>
+        </td>
+    </tr>
+
+    <!----- Country -------------------------------------------------------->
+    <tr>
+        <td>Country</td>
+        <td>
+        <select name="country">
+                <option value="Australia">Australia</option>
+                <option value="Bolivia">Bolivia</option>
+                <option value="China">China</option>
+                <option value="Denemark">Denemark</option>
+            </select>
+
+        </td>
+    </tr>
+
+
+    <!----- city ---------------------------------------------------------->
+    <tr>
+        <td>City</td>
+        <td><input
+                type="text"
+                maxlength="30"
+                placeholder="Enter City name"
+                ng-model="city"/>
+            (max 30 characters a-z and A-Z)
+            <h1>{{city}}</h1>
+        </td>
+    </tr>
+
+    <!----- email ---------------------------------------------------------->
+    <tr>
+        <td>Email</td>
+        <td><input
+                type="email"
+                placeholder="Enter Email"
+                ng-model="email"/>
+            <h1>{{email}}</h1>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            please choose 2 question for security reasons and answer them
+        </td>
+    </tr>
+    <!----- question1 ---------------------------------------------------------->
+    <br>
+    <tr>
+        <td>Question 1</td>
+        <td><input
+                type="text"
+                maxlength="100"
+                placeholder="Enter First question"
+                ng-model="q1"/>
+            <h1>{{q1}}</h1>
+        </td>
+    </tr>
+
+    <!----- answer1 ---------------------------------------------------------->
+    <br>
+    <tr>
+        <td>Answer 1</td>
+        <td><input
+                type="text"
+                maxlength="100"
+                placeholder="Enter First answer"
+                ng-model="a1"/>
+            <h1>{{a1}}</h1>
+        </td>
+    </tr>
+
+    <!----- question 2 ---------------------------------------------------------->
+    <br>
+    <tr>
+        <td>Question 2</td>
+        <td><input
+                type="text"
+                maxlength="100"
+                placeholder="Enter Second question"
+                ng-model="q2"/>
+            <h1>{{q2}}</h1>
+    </tr>
+    <!----- answer2 ---------------------------------------------------------->
+    <br>
+    <tr>
+        <td>Answer 2</td>
+        <td><input
+                type="text"
+                maxlength="100"
+                placeholder="Enter Second answer"
+                ng-model="a2"/>
+            <h1>{{a2}}</h1>
+        </td>
+    </tr>
+    <!----- category ---------------------------------------------------------->
+    <br>
+    <tr>
+
+        <td>Category</td>
+        <td><input
+                type="text"
+                maxlength="100"
+                ng-model="category"/>
+            <h1>{{category}}</h1>
+        </td>
+    </tr>
+
+    <!----- Submit and Reset ------------------------------------------------->
+    <tr>
+        <td colspan="2" align="center">
+            <button ng-click="myFunc()">Submit</button>
+
+            <input type="reset" value="Reset">
+        </td>
+    </tr>
+</table>
+
+</form>
+
+</body>
+</html>
