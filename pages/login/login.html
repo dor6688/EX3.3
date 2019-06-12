@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
 
     <div id="login">
         <h1>Welcome Back!</h1>
-        <table align="center" cellpadding = "10" ng-app="myApp" ng-controller="loginController">
+        <div ng-hide="forgot">
+        <table align="center" cellpadding="10" ng-app="myApp" ng-controller="loginController">
+            <input type="checkbox" ng-model="forgot">
+            
+                <!----- User Name ---------------------------------------------------------->
+                <tr>
+                    <td>User Name</td>
+                    <td>
+                        <input type="text" placeholder="Enter User Name" ng-model="UserName" />
+                        <h1>{{UserName}}</h1>
+                    </td>
+                </tr>
 
-    <!----- User Name ---------------------------------------------------------->
+                <!----- password ---------------------------------------------------------->
+                <tr>
+                    <td>password</td>
+                    <td>
+                        <input type="text" placeholder="Enter password" ng-model="password" />
+                        <h1>{{password}}</h1>
+                    </td>
+                </tr>
+            <p class="forgrt"><a href="" ng-click="funcForget()">Forgot Password?</a></p>
 
-            <tr>
-                <td>User Name</td>
-                <td>
-                    <input
-                            type="text"
-                            placeholder="Enter User Name"
-                            ng-model="UserName"/>
-                    <h1>{{UserName}}</h1>
-                </td>
-            </tr>
 
-    <!----- password ---------------------------------------------------------->
-    <tr>
-        <td>password</td>
-        <td>
-            <input
-                    type="text"
-                    placeholder="Enter password"
-                    ng-model="password"/>
-            <h1>{{password}}</h1>
-        </td>
-    </tr>
 
-            <p class="forgot"><a href="#restorePassword">Forgot Password?</a></p>
+            <td colspan="2" align="center">
+                <button ng-click="login()">Log In</button>
 
-                <td colspan="2" align="center">
-            <button ng-click="login()">Log In</button>
+            </td>
 
-        </td>
-
-        </form>
+        </table>
+    </div>
 
     </div>
 
 
 </body>
+
 </html>
