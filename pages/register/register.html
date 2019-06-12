@@ -74,16 +74,14 @@
 
     <!----- Country -------------------------------------------------------->
     <tr>
-        <td>Country</td>
-        <td>
-        <select name="country">
-                <option value="Australia">Australia</option>
-                <option value="Bolivia">Bolivia</option>
-                <option value="China">China</option>
-                <option value="Denemark">Denemark</option>
-            </select>
 
-        </td>
+       <td> Country </td>
+       <td> 
+        <select ng-model="selectCountry" ng-options="x.Name for x in Countries"></select>
+        <h1>{{selectCountry.Name}}</h1>
+
+    </td>
+
     </tr>
 
 
@@ -169,15 +167,13 @@
     <br>
     <tr>
 
-        <td>Category</td>
-        <td><input
-                type="text"
-                maxlength="100"
-                ng-model="category"/>
-            <h1>{{category}}</h1>
-        </td>
-    </tr>
-
+        <td> Category </td>
+        <td> 
+         <select ng-model="selectCategory" ng-options="x.categoryName for x in Categories"></select>
+         <h1>{{selectCategory.Name.outerHTML}}</h1>
+   
+     </td>
+     </tr>
     <h1>{{myWelcome}}</h1>
 
     <!----- Submit and Reset ------------------------------------------------->

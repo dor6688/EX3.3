@@ -28,10 +28,10 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/register/register.html',
             controller : 'registerController as registerCtrl'
         })
-        // .when('/login', {
-        //     templateUrl: 'pages/login/login.html',
-        //     controller : 'loginController as loginCtrl'
-        // })
-        // other
+         .when('/login', {
+             templateUrl: 'pages/login/login.html',
+             controller : 'loginController as loginCtrl'
+         })
+       // other
         .otherwise({ redirectTo: '/' });
 });
