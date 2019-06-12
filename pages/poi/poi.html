@@ -1,15 +1,18 @@
 <!-- css -->
 <style>
     img {
-        height: 100px;
+        height: 200px;
     }
 </style>
 
 <h2>POI</h2>
 
 <!-- display all cities -->
-<p ng-repeat="(id, city) in poiCtrl.cities">
-    City Name: <span ng-bind="city.name"></span><br>
-    City State: <span ng-bind="city.state"></span><br>
-    <img ng-src="{{ city.image }}">
+<p ng-repeat="(id, poi) in poiCtrl.Pois">
+    Poi Name: <span ng-bind="poi.poiName"></span><br>
+    Poi Description: <span ng-bind="poi.poiDescription"></span><br>
+    Poi Rate: <span ng-bind="poi.poiRate"></span><br>
+    Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
+    Poi Category: <span ng-bind="poi.categoryName"></span><br>
+    <img ng-src="{{ poi.poiURL }}">
 </p>

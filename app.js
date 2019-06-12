@@ -1,5 +1,6 @@
 let app = angular.module('myApp', ["ngRoute"]);
 
+
 // config routes
 app.config(function($routeProvider)  {
     $routeProvider
@@ -27,10 +28,10 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/register/register.html',
             controller : 'registerController as registerCtrl'
         })
-        .when('/login', {
-            templateUrl: 'pages/login/login.html',
-            controller : 'loginController as loginCtrl'
-        })
+        // .when('/login', {
+        //     templateUrl: 'pages/login/login.html',
+        //     controller : 'loginController as loginCtrl'
+        // })
         // other
         .otherwise({ redirectTo: '/' });
 });

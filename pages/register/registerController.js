@@ -1,5 +1,5 @@
 angular.module("myApp")
-    .controller("registerController", function ($scope) {
+    .controller("registerController", function ($scope, $http) {
         $scope.firstname = "";
         $scope.lastname = "";
         $scope.username = "";
@@ -12,9 +12,11 @@ angular.module("myApp")
         $scope.category = "";
         $scope.password = "";
 
-
-        $scope.myFunc = function() {
-            window.alert("First Name : " + $scope.password +"\n"
-             + "LastName : "+ $scope.lastname +"\n")
+        $scope.sumbit = function() {
+            $http.get('http://localhost:3000/points/ListOfPoints').then(function(response){
+                window.alert(response.data);
+            });
         }
+
+
     });
