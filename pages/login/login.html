@@ -7,45 +7,48 @@
 </head>
 
 <body>
+    <div class="user">
+        <div id="login" class="active">
+            <h1>Welcome Back!</h1>
+            <div ng-hide="forgot">
+                <table align="center" cellpadding="10" ng-app="myApp" ng-controller="loginController">
 
-    <div id="login">
-        <h1>Welcome Back!</h1>
-        <div ng-hide="forgot">
-        <table align="center" cellpadding="10" ng-app="myApp" ng-controller="loginController">
-            <input type="checkbox" ng-model="forgot">
-            
-                <!----- User Name ---------------------------------------------------------->
-                <tr>
-                    <td>User Name</td>
-                    <td>
-                        <input type="text" placeholder="Enter User Name" ng-model="UserName" />
-                        <h1>{{UserName}}</h1>
+
+                    <!----- User Name ---------------------------------------------------------->
+                    <tr>
+                        <td>User Name</td>
+                        <td>
+                            <input type="text" placeholder="Enter User Name" ng-model="UserName" />
+                            <h1>{{UserName}}</h1>
+                        </td>
+                    </tr>
+
+                    <!----- password ---------------------------------------------------------->
+                    <tr>
+                        <td>password</td>
+                        <td>
+                            <input type="text" placeholder="Enter password" ng-model="password" />
+                            <h1>{{password}}</h1>
+                        </td>
+                    </tr>
+                
+                    <p class="forgrt"><a href="#" ng-click="funcForget()">Forgot Password?</a></p>
+                   
                     </td>
-                </tr>
-
-                <!----- password ---------------------------------------------------------->
-                <tr>
-                    <td>password</td>
-                    <td>
-                        <input type="text" placeholder="Enter password" ng-model="password" />
-                        <h1>{{password}}</h1>
-                    </td>
-                </tr>
-            <p class="forgrt"><a href="" ng-click="funcForget()">Forgot Password?</a></p>
+                    <tr>
+                            <td colspan="2" align="center">
+                                <button ng-click="login()">login</button>
+                                
+                                <input type="reset" value="Reset">
+                            </td>
+                        </tr>
+                </table>
+            </div>
 
 
-
-            <td colspan="2" align="center">
-                <button ng-click="login()">Log In</button>
-
-            </td>
-
-        </table>
-    </div>
+        </div>
 
     </div>
-
-
 </body>
 
 </html>

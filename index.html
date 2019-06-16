@@ -1,6 +1,8 @@
 <html>
     <head>
         <title>My Website</title>
+        <link type="stylesheet"  href="style.css">
+
     </head>
     <body ng-app="myApp">
         <!-- load angular -->
@@ -11,11 +13,14 @@
         <script src="app.js"></script>
 
         <!-- load controllers -->
+        <script src="pages/home/homeController.js"></script>
         <script src="pages/about/aboutController.js"></script>
         <script src="pages/poi/poiController.js"></script>
         <script src="pages/http/httpController.js"></script>
         <script src="pages/register/registerController.js"></script>
         <script src="pages/login/loginController.js"></script>
+        <script src="pages/restore/restoreController.js"></script>
+
 
 
 
@@ -25,7 +30,7 @@
         <!-- menu -->
         <ul>
             <li>
-                <a href="#!">Home</a>
+                <a href="#!home">Home</a>
             </li>
             <li>
                 <a href="#!about">About</a>
@@ -42,6 +47,10 @@
             <li>
                 <a href="#!login">login</a>
             </li>
+            <li>
+                <a href="#!restore">restore</a>
+            </li>
+
 
 
 

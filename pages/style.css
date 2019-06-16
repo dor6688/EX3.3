@@ -1,0 +1,115 @@
+html {
+  font-family: Arial, 'Droid Sans', sans;
+  background-color: #eee;
+}
+
+.user {
+  width: 25vw;
+  padding: 1em;
+  perspective: 600px;
+  position: relative;
+}
+
+.user > div {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  box-shadow: 0 1px 3px #000;
+  color: #000;
+  padding: 0.5em;
+  transition: 250ms transform, 250ms opacity;
+  position: absolute;
+  width: 100%;
+}
+
+.user #signup:not(.active) {
+  transform: rotateY(-180deg);
+  opacity: 0;
+  z-index: -1;
+}
+
+.user #login:not(.active) {
+  transform: rotateY(180deg);
+  opacity: 0;
+  z-index: -1;
+}
+
+.user h3 {
+  margin: 0 0 0.5em;
+}
+
+.user input:not([type=submit]) {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #eee;
+  margin: 0.5em 0;
+}
+
+.user input:not([type=submit]):focus {
+  border-color: #777;
+}
+
+.user input[type=submit] {
+  color: #fff;
+  background-color: #777;
+  border: 1px solid #000;
+  padding: 0.1em 0.5em;
+}
+
+.user input[type=submit]:focus {
+  background-color: #333;
+}
+
+.user a {
+  display: block;
+  padding: 0.2em;
+  text-decoration: none;
+  color: #555;
+  font-weight: 100;
+  font-size: 85%;
+}
+
+.user .buttonbox {
+  margin-top: 1em;
+  display: block !important;
+}
+
+.user #signup #gotosignin {
+  float: right;
+}
+
+.user #login #gotosignup {
+  float: left;
+}
+
+.user #signup #gotosignin::after {
+  content: "►";
+  font-size: 85%;
+  padding-left: 0.5em;
+  color: #06b;
+  font-weight: 800;
+  text-shadow: 4px 0 0 #28d, 8px 0 0 #4af;
+}
+
+.user #login #gotosignup::before {
+  content: "◄";
+  font-size: 85%;
+  padding-right: 0.5em;
+  color: #06b;
+  font-weight: 800;
+  text-shadow: -4px 0 0 #28d, -8px 0 0 #4af;
+}
+
+.user #login .buttonbox {
+  text-align: right;
+}
+
+.user #forgot {
+  margin: 0.9em 0 0;
+}
+div.randomPoi {
+  position: sticky;
+  width: 50%;
+  bottom: 10px;
+  border: 3px solid #8AC007;
+} 
