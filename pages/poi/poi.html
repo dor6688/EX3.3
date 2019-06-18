@@ -1,18 +1,33 @@
-<!-- css -->
-<style>
-    img {
-        height: 200px;
-    }
-</style>
+<!DOCTYPE html>
+<html lang="en">
 
-<h2>POI</h2>
+<head>
+    <meta charset="UTF-8">
+    <title>Poi</title>
+    <style>
+        img {
+            height: 200px;
+        }
+    </style>
+</head>
 
-<!-- display all cities -->
-<p ng-repeat="(id, poi) in poiCtrl.Pois">
-    Poi Name: <span ng-bind="poi.poiName"></span><br>
-    Poi Description: <span ng-bind="poi.poiDescription"></span><br>
-    Poi Rate: <span ng-bind="poi.poiRate"></span><br>
-    Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
-    Poi Category: <span ng-bind="poi.categoryName"></span><br>
-    <img ng-src="{{ poi.poiURL }}">
-</p>
+<body ng-app="myApp" ng-controller="poiController">
+    <h3>Poi</h3>
+
+    <div id="poi" class="active">
+        <select ng-model="selectCategory" ng-options="x.categoryName for x in Categories"></select>
+        <pre>{{selectCategory.categoryName}}</pre>
+        <br>
+        <button ng-click="search()">Search</button>
+        <br>
+        <p ng-repeat="(id, poi) in poiCtrl.Pois">
+            Poi Name: <span ng-bind="poi.poiName"></span><br>
+            Poi Description: <span ng-bind="poi.poiDescription"></span><br>
+            Poi Rate: <span ng-bind="poi.poiRate"></span><br>
+            Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
+            Poi Category: <span ng-bind="poi.categoryName"></span><br>
+            <img ng-src="{{ poi.poiURL }}">
+    </div>
+</body>
+
+</html>
