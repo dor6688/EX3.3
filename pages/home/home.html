@@ -1,34 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <!-- css -->
+<!-- css -->
 <style>
-        img {
-            height: 200px;
-        }
+    img {
+        height: 200px;
+    }
+    table{
+        position:absolute;
+        bottom:5px;
+    }
 </style>
-    
 
-</head>
-
-<body>
-    <table align="center" cellpadding="10" ng-app="myApp" ng-controller="homeController">
-        <p ng-repeat="(id, poi) in homeCtrl.randomPois">
-                Poi Name: <span ng-bind="poi.poiName"></span><br>
-                Poi Description: <span ng-bind="poi.poiDescription"></span><br>
-                Poi Rate: <span ng-bind="poi.poiRate"></span><br>
-                Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
-                Poi Category: <span ng-bind="poi.categoryName"></span><br>
-                <img ng-src="{{ poi.poiURL }}">
-            </p>
-    </table>
-
-
-
-
-</body>
-</html>
-        
+<h2>HOME</h2>
+<!-- display all cities -->
+<table>
+    <tr>
+        <td ng-repeat="(id, poi) in homeCtrl.Pois">
+            Poi Name: <span ng-bind="poi.poiName"></span><br>
+            Poi Description: <span ng-bind="poi.poiDescription"></span><br>
+            Poi Rate: <span ng-bind="poi.poiRate"></span><br>
+            Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
+            Poi Category: <span ng-bind="poi.categoryName"></span><br>
+            <img ng-src="{{ poi.poiURL }}">
+        </td>
+    </tr>
+</table>
