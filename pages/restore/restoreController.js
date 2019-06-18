@@ -1,7 +1,8 @@
 angular.module("myApp")
-    .controller("restoreController", function ($scope, $http) {
+    .controller("restoreController", function ($scope, $http, $rootScope) {
         self = this;
         $scope.UserName = "";
+        alert( $rootScope.userToken);
         $scope.Questions="";
         $scope.selectQuestion1;
         $scope.selectQuestion2;
@@ -11,7 +12,7 @@ angular.module("myApp")
         $scope.yourPass=false;
       
         $scope.getQuestion=function(){
-            $http.get('http://localhost:3000/privateUser/getQuestions/' + $scope.UserName ).then(function(response){
+            $http.get('http://localhost:3000/users/getQuestions/' + $scope.UserName ,{ headers: {"x-auth-token":$rootScope.userToken}}).then(function(response){
             $scope.Questions=response.data;
                 
     
@@ -28,7 +29,7 @@ angular.module("myApp")
         $scope.yourPass=true;
 
 
-            $http.post('http://localhost:3000/privateUser/checkQuestion', answers)
+            $http.post('http://localhost:3000/users/checkQuestion', answers)
             .then(function(response){
                 // check here if insert successfully
                 $scope.restoredPassword = response.data

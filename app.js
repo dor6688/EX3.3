@@ -1,9 +1,13 @@
 let app = angular.module('myApp', ["ngRoute"]);
-var userToken = null;
+
+app.run(function($rootScope) {
+    $rootScope.userToken = 'shula';
+  });
 
 // config routes
 app.config(function($routeProvider)  {
     $routeProvider
+
         // homepage
         .when('/home', {
             // this is a template

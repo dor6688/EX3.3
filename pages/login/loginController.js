@@ -1,12 +1,11 @@
 
 angular.module("myApp")
-    .controller("loginController", function ($scope, $http) {
+    .controller("loginController", function ($scope, $http,$rootScope) {
         self = this;
         $scope.token;
         $scope.UserName = "";
         $scope.Question1 = "";
         $scope.Question2 = "";
-
         $scope.password = "";
         $scope.forgot = false;
         $scope.login = function() {
@@ -14,14 +13,13 @@ angular.module("myApp")
                 username: $scope.UserName,
                 password: $scope.password
             }
+            //{ headers: {"x-auth-token":$rootScope.userToken}}
 
-            $http.post('http://localhost:3000/users/login', user)
+            $http.post('http://localhost:3000/users/login',user )
             .then(function(response){
                 // check here if insert successfully
-                $scope.token = response.data
-                userToken = $scope.token
-                window.alert($scope.token)
-                alert(userToken)
+                $rootScope.userToken=response.data;
+                window.alert($rootScope.userToken)
             },function (error){
                 window.alert("NO !")
             })
