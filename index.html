@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>My Website</title>
-        <link type="stylesheet"  href="style.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
 
     </head>
     <body ng-app="myApp">
@@ -48,14 +48,19 @@
             <li>
                 <a href="#!login">login</a>
             </li>
-            <li>
-                <a href="#!restore">restore</a>
-            </li>
+      
 
 
 
 
         </ul>
+        <div ng-show="userNameLogged">
+            <div class="helloUser"> Hello {{userNameLogged}}</div>
+            </div>
+
+        <div ng-hide="userNameLogged">
+            <div class="helloUser"> Hello guest</div>
+            </div>
 
         <!-- This section changes as the hashbang changes -->
         <div ng-view></div>
