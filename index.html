@@ -11,7 +11,10 @@
     <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
 
     <!-- load app -->
-    <script src="app.js"></script>
+    <script src="app.js">
+            </script>
+  
+    
 
     <!-- load controllers -->
     <script src="pages/home/homeController.js"></script>
@@ -22,6 +25,8 @@
     <script src="pages/login/loginController.js"></script>
     <script src="pages/restore/restoreController.js"></script>
 
+
+
     <!-- the website -->
     <h1>My Website</h1>
 
@@ -31,9 +36,19 @@
             <a href="#!about">About</a>
             <a href="#!poi">POI</a>
             <a href="#!httpRequest">HTTP Request</a>
-            <a href="#!register">Register</a>
-            <a href="#!login">login</a>
+                <div class="userSetting" align-content= "center">
+                    <div ng-hide="userNameLogged">
+                        <a href="#!register">Register</a>
+                        <a href="#!login">login</a>
+                    </div>
+                    
+                </div>
+                <div ng-show="userNameLogged">
+                        <button class = "buttonLogOut" ng-click="logout()">log out</button>
+                        
+                </div>
     </div>
+
 
     <div ng-show="userNameLogged">
         <div class="helloUser"> Hello {{userNameLogged}}</div>

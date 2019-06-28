@@ -42,7 +42,8 @@ angular.module("myApp")
             $http.post('http://localhost:3000/users/addUser', new_user)
             .then(function(response){
                 // check here if insert successfully
-                window.alert("Succeess !")
+                window.location.href = "#!login";
+
             },function (error){
                 window.alert("NO !")
             })
