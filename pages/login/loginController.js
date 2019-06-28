@@ -7,6 +7,7 @@ angular.module("myApp")
         $scope.Question1 = "";
         $scope.Question2 = "";
         $scope.password = "";
+        $rootScope.userNameLogged;
         $scope.forgot = false;
         $scope.login = function() {
             var user = {
@@ -19,6 +20,7 @@ angular.module("myApp")
             .then(function(response){
                 // check here if insert successfully
                 $rootScope.userToken=response.data;
+                $rootScope.userNameLogged=$scope.UserName;
                 window.alert($rootScope.userToken)
             },function (error){
                 window.alert("NO !")

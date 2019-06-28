@@ -1,5 +1,6 @@
 table{
   position:absolute;
+<<<<<<< HEAD
   bottom:5px;
 }
 
@@ -19,4 +20,15 @@ h2{
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+=======
+  top:33%;
+}
+
+
+
+.helloUser{
+  position: absolute;
+  top: 2%;
+  right: 10%;
+>>>>>>> 5e3b818d0ba833bea67ff6a51bcfdff3c8214644
 }

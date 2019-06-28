@@ -1,4 +1,5 @@
 <html>
+<<<<<<< HEAD
 
 <head>
     <title>My Website</title>
@@ -41,4 +42,72 @@
     <div ng-view></div>
 </body>
 
+=======
+    <head>
+        <title>My Website</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+    </head>
+    <body ng-app="myApp">
+        
+        <!-- load angular -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
+        <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
+
+        <!-- load app -->
+        <script src="app.js"></script>
+
+        <!-- load controllers -->
+        <script src="pages/home/homeController.js"></script>
+        <script src="pages/about/aboutController.js"></script>
+        <script src="pages/poi/poiController.js"></script>
+        <script src="pages/http/httpController.js"></script>
+        <script src="pages/register/registerController.js"></script>
+        <script src="pages/login/loginController.js"></script>
+        <script src="pages/restore/restoreController.js"></script>
+
+
+
+
+        <!-- the website -->
+        <h1>My Website</h1>
+
+        <!-- menu -->
+        <ul>
+            <li>
+                <a href="#!home">Home</a>
+            </li>
+            <li>
+                <a href="#!about">About</a>
+            </li>
+            <li>
+                <a href="#!poi">POI</a>
+            </li>
+            <li>
+                <a href="#!httpRequest">HTTP Request</a>
+            </li>
+            <li>
+                <a href="#!register">Register</a>
+            </li>
+            <li>
+                <a href="#!login">login</a>
+            </li>
+      
+
+
+
+
+        </ul>
+        <div ng-show="userNameLogged">
+            <div class="helloUser"> Hello {{userNameLogged}}</div>
+            </div>
+
+        <div ng-hide="userNameLogged">
+            <div class="helloUser"> Hello guest</div>
+            </div>
+
+        <!-- This section changes as the hashbang changes -->
+        <div ng-view></div>
+    </body>
+>>>>>>> 5e3b818d0ba833bea67ff6a51bcfdff3c8214644
 </html>
