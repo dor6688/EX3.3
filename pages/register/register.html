@@ -29,7 +29,6 @@
                     <td>First Name</td>
                     <td>
                         <input type="text" maxlength="30" placeholder="Enter First name" ng-model="firstname" />
-                        (max 30 characters a-z and A-Z)
                         <h1>{{firstname}}</h1>
                     </td>
                 </tr>
@@ -39,7 +38,6 @@
                     <td>Last Name</td>
                     <td>
                         <input type="text" maxlength="30" placeholder="Enter Last name" ng-model="lastname" />
-                        (max 30 characters a-z and A-Z)
                         <h1>{{lastname}}</h1>
                     </td>
                 </tr>
@@ -48,8 +46,8 @@
                 <tr>
                     <td>User Name</td>
                     <td>
-                        <input type="text" maxlength="30" placeholder="Enter Username" ng-model="username" />
-                        (max 30 characters a-z and A-Z)
+                        <input type="text" maxlength="30" placeholder="Enter Username" ng-model="username" pattern="(a-Z)" />
+                        <br>(only letters and between 3 to 8 characters)
                         <h1>{{username}}</h1>
                     </td>
                 </tr>
@@ -59,9 +57,10 @@
                     <td>Password</td>
                     <td>
                         <input type="password" id="psw" placeholder="Enter Password"
-                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+                            title="Must contain at least one number and letter, and between 5 to 10 characters"
                             ng-model="password" required />
+                            <br>(at least one number and one uppercase and lowercase letter, and between 5 to 10 characters)
                         <h1>{{password}}</h1>
                     </td>
                 </tr>
@@ -83,7 +82,6 @@
                 <tr>
                     <td>City</td>
                     <td><input type="text" maxlength="30" placeholder="Enter City name" ng-model="city" />
-                        (max 30 characters a-z and A-Z)
                         <h1>{{city}}</h1>
                     </td>
                 </tr>

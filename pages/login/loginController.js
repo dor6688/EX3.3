@@ -1,6 +1,8 @@
 
 angular.module("myApp")
     .controller("loginController", function ($scope, $http,$rootScope) {
+        alert($rootScope.userNameLogged)
+
         self = this;
         $scope.token;
         $scope.UserName = "";
@@ -9,6 +11,7 @@ angular.module("myApp")
         $scope.password = "";
         $rootScope.userNameLogged;
         $scope.forgot = false;
+        $scope.success=false;
         $scope.login = function() {
             var user = {
                 username: $scope.UserName,
@@ -21,7 +24,7 @@ angular.module("myApp")
                 // check here if insert successfully
                 $rootScope.userToken=response.data;
                 $rootScope.userNameLogged=$scope.UserName;
-                window.alert($rootScope.userToken)
+                window.location.href = "#!home";
             },function (error){
                 window.alert("NO !")
             })

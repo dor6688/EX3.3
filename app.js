@@ -9,7 +9,7 @@ app.config(function($routeProvider)  {
     $routeProvider
 
         // homepage
-        .when('/home', {
+        .when('/', {
             // this is a template
             templateUrl: 'pages/home/home.html',
             controller : 'homeController as homeCtrl'
@@ -41,6 +41,7 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/restore/restore.html',
             controller : 'restoreController as restoreCtrl'
         })
+        
        // other
         .otherwise({ redirectTo: '/' });
 });

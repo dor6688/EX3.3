@@ -13,9 +13,9 @@ table{
   float: left;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 16px;
+  padding: 2% 2%;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 100%;
   top:33%;
 }
 
@@ -24,4 +24,11 @@ table{
   top: 2%;
   right: 10%;
 }
-                    
+
+.userSetting a{
+  float: right
+}
+
+.buttonLogOut{
+  float: right
+}
