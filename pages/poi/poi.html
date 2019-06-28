@@ -12,27 +12,48 @@
 </head>
 
 <body ng-app="myApp" ng-controller="poiController">
-    <h3>Poi</h3>
+    <h1>Poi</h1>
 
     <div id="poi" class="active">
-        Category :
-        <select ng-model="selectCategory" ng-options="x.categoryName for x in Categories"></select>
-        <button ng-click="search()">Search</button>
-        <br>
-        Poi name :
-        <input type="text" name="serach_poi_name" ng-model="cat_name"><br>
-        <button ng-click="search_by_name()">Search</button>
+        <div id="bar_search" align="center">
+            <table>
+                <tr>
+                    <td>Filter by category :</td>
+                    <td>
+                        <select ng-model="selectCategory" ng-options="x.categoryName for x in Categories"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Search by Poi name :</td>
+                    <td>
+                        <input type="text" name="serach_poi_name" ng-model="cat_name"><br>
+                    </td>
+                </tr>
+            </table>
+            <button ng-click="search()">Search</button>
+            <button ng-click="search_by_name()">Search_input</button>
+        </div>
         <div np-show="empty_result">Didn't found anything...</div>
-        <br>
 
-        <br>
-        <p ng-repeat="(id, poi) in poiCtrl.Pois">
-            Poi Name: <span ng-bind="poi.poiName"></span><br>
-            Poi Description: <span ng-bind="poi.poiDescription"></span><br>
-            Poi Rate: <span ng-bind="poi.poiRate"></span><br>
-            Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
-            Poi Category: <span ng-bind="poi.categoryName"></span><br>
-            <img ng-src="{{ poi.poiURL }}" ng-click="open_description_window(poi.poiWatching, poi.poiDescription, poi.poiRate)">
+        <table border="1" align="center" style="width:50%">
+            <tr>
+                <td align="center" style="font-size: 30px"><b>Information</b></td>
+                <td align="center" style="font-size: 30px"><b>Image</b></td>
+            </tr>
+            <tr ng-repeat="(id, poi) in poiCtrl.Pois">
+                <td style="width:40%">
+                    <b style="font-size: 25px">Poi Name:</b> <span ng-bind="poi.poiName"></span><br>
+                    <br>
+                    <b style="font-size: 25px">Poi Category:</b> <span ng-bind="poi.categoryName"></span><br>
+                </td>
+                <td align="center" style="width:40%">
+                    <img ng-src="{{ poi.poiURL }}"
+                        ng-click="open_description_window(poi.poiWatching, poi.poiDescription, poi.poiRate, poi.poiName)">
+                </td>
+            </tr>
+        </table>
+
+
     </div>
 </body>
 

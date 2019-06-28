@@ -31,7 +31,16 @@ angular.module("myApp")
 
                 })
         }
-        $scope.open_description_window = function(poi_watch, poi_desc, poi_rate){
+        $scope.open_description_window = function(poi_watch, poi_desc, poi_rate, poi_name){
+            var poi_name_jason = {
+                poiName : poi_name
+            }
+            $http.put('http://localhost:3000/points/addPoiWatching' ,poi_name_jason)
+            .then(function (response){
+
+            }, function (error){
+
+            })
             var newWin = open('url', 'windowName', 'height=300,width=300');
             full_description = "Poi Watching : " + poi_watch + "<br>" +
                                 "Poi description : " + poi_desc + "<br>" +
@@ -41,7 +50,3 @@ angular.module("myApp")
         }
     });
 
-
-// open new window and insert text into it
-// var newWin = open('url', 'windowName', 'height=300,width=300');
-// newWin.document.write('html to write...');
