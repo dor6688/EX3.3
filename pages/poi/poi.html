@@ -4,14 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Poi</title>
-    <style>
-        img {
-            height: 200px;
-        }
-    </style>
 </head>
 
 <body ng-app="myApp" ng-controller="poiController">
+
     <h1>Poi</h1>
 
     <div id="poi" class="active">
@@ -21,6 +17,7 @@
                     <td>Filter by category :</td>
                     <td>
                         <select ng-model="selectCategory" ng-options="x.categoryName for x in Categories"></select>
+                        <button ng-click="search()">Filter</button>
                     </td>
                 </tr>
                 <tr>
@@ -30,10 +27,9 @@
                     </td>
                 </tr>
             </table>
-            <button ng-click="search()">Search</button>
-            <button ng-click="search_by_name()">Search_input</button>
+
+            <button ng-click="search_by_name()">Search</button>
         </div>
-        <div np-show="empty_result">Didn't found anything...</div>
 
         <table border="1" align="center" style="width:50%">
             <tr>
@@ -48,13 +44,20 @@
                 </td>
                 <td align="center" style="width:40%">
                     <img ng-src="{{ poi.poiURL }}"
-                        ng-click="open_description_window(poi.poiWatching, poi.poiDescription, poi.poiRate, poi.poiName)">
+                        ng-click="open_description_window(poi.poiWatching,poi.poiDescription, poi.poiRate, poi.poiName)">
+                    <img ng-src="{{heart}}" style="width: 10%"
+                    ng-click="like_poi(poi.poiName)">
+                    </button>
+
+
+                    <p>Click on Image</p>
                 </td>
             </tr>
         </table>
 
 
     </div>
+
 </body>
 
 </html>
