@@ -15,10 +15,16 @@
     <h3>Poi</h3>
 
     <div id="poi" class="active">
+        Category :
         <select ng-model="selectCategory" ng-options="x.categoryName for x in Categories"></select>
-        <pre>{{selectCategory.categoryName}}</pre>
-        <br>
         <button ng-click="search()">Search</button>
+        <br>
+        Poi name :
+        <input type="text" name="serach_poi_name" ng-model="cat_name"><br>
+        <button ng-click="search_by_name()">Search</button>
+        <div np-show="empty_result">Didn't found anything...</div>
+        <br>
+
         <br>
         <p ng-repeat="(id, poi) in poiCtrl.Pois">
             Poi Name: <span ng-bind="poi.poiName"></span><br>
@@ -26,7 +32,7 @@
             Poi Rate: <span ng-bind="poi.poiRate"></span><br>
             Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
             Poi Category: <span ng-bind="poi.categoryName"></span><br>
-            <img ng-src="{{ poi.poiURL }}">
+            <img ng-src="{{ poi.poiURL }}" ng-click="open_description_window(poi.poiWatching, poi.poiDescription, poi.poiRate)">
     </div>
 </body>
 
