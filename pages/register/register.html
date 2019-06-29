@@ -137,13 +137,27 @@
                 <tr>
 
                     <td> Category </td>
-                    <td>
-                        <select ng-model="selectCategory" ng-options="x.categoryName for x in Categories"></select>
-                        <h1>{{selectCategory.Name.outerHTML}}</h1>
+                    <td>category 1
+                        <select ng-model="selectCategory1" ng-options="x.categoryName for x in Categories"></select>
+                        <h1>{{selectCategory1.Name.outerHTML}}</h1>
 
                     </td>
                 </tr>
                 <h1>{{myWelcome}}</h1>
+
+                  <!----- category ---------------------------------------------------------->
+                  
+                  <tr>
+  
+                      <td> Category </td>
+                      <td> category 2
+                          <select ng-model="selectCategory2" ng-options="x.categoryName for x in Categories"></select>
+                          <h1>{{selectCategory2.Name.outerHTML}}</h1>
+  
+                      </td>
+                  </tr>
+                  <h1>{{myWelcome}}</h1>
+  
 
                 <!----- Submit and Reset ------------------------------------------------->
                 <tr>
