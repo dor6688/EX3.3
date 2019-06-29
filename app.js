@@ -1,8 +1,6 @@
 let app = angular.module('myApp', ["ngRoute"]);
 
-app.run(function($rootScope) {
-    $rootScope.userToken = 'shula';
-  });
+
 
 // config routes
 app.config(function($routeProvider)  {

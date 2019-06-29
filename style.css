@@ -9,6 +9,10 @@ table{
   overflow: hidden;
 }
 
+body {
+  background-color: #505050;
+}
+
 .topnav a {
   float: left;
   color: #f2f2f2;
@@ -32,3 +36,32 @@ table{
 .buttonLogOut{
   float: right
 }
+
+.recommendedPois {
+  float: left;
+  width: 40%;
+  padding: 1%;
+  background-color: #D3D3D3;
+}
+
+/* Clear floats after the columns */
+.lastSavedPoi:after {
+  float: right;
+  width: 10%;
+  padding: 80%;
+  display: table;
+  clear: both;
+}
+
+img {
+  height: 50%;
+  border-radius: 50%;
+
+}
+
+.randomTable {
+  position: absolute;
+  bottom: 2%;
+}
+
+
