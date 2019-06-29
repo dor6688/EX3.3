@@ -6,7 +6,6 @@ angular.module("myApp")
         $scope.cat_name;
         $scope.empty_result;
         $scope.heart = [];
-<<<<<<< HEAD
         $scope.flag = [1, 1];
         // Get the modal
 var modal = document.getElementById("myModal");
@@ -15,27 +14,28 @@ var modal = document.getElementById("myModal");
 var img = document.getElementById("myImg");
 var modalImg = document.getElementById("img01");
 var captionText = document.getElementById("caption");
+/*
 img.onclick = function(){
   modal.style.display = "block";
   modalImg.src = this.src;
   captionText.innerHTML = this.alt;
 }
-
+*/
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
+/*
 span.onclick = function() { 
   modal.style.display = "none";
 }
-=======
+*/
         $scope.flag = [];
         if ($rootScope.favList === undefined) {
             $rootScope.favList = [];
         }
         $scope.default_image = "https://upload.wikimedia.org/wikipedia/commons/b/b9/GJL-fft-herz.svg";
         $scope.redHeart = "https://www.warrenstore.com/wp-content/uploads/2015/06/clipart-heart-LiKzza9ia.png"
->>>>>>> 79ac3b5e62c192e11edf7beb7e06cda90bf26d5d
         $http.get('http://localhost:3000/points/getCategories').then(function (response) {
             $scope.Categories = response.data;
         });
@@ -62,10 +62,7 @@ span.onclick = function() {
             $http.get('http://localhost:3000/points/ListOfPointsByCategory/' + $scope.selectCategory.categoryName)
                 .then(function (response) {
                     self.Pois = response.data;
-<<<<<<< HEAD
                     $scope.default_image = "https://upload.wikimedia.org/wikipedia/commons/b/b9/GJL-fft-herz.svg";
-=======
->>>>>>> 79ac3b5e62c192e11edf7beb7e06cda90bf26d5d
                     for (i in self.Pois) {
                         $scope.heart[i] = $scope.default_image;
                     }
@@ -80,10 +77,7 @@ span.onclick = function() {
                     if (self.Pois.length == 0) {
                         window.alert("Sorry, didn't found anything... ")
                     } else {
-<<<<<<< HEAD
                         $scope.default_image = "https://upload.wikimedia.org/wikipedia/commons/b/b9/GJL-fft-herz.svg";
-=======
->>>>>>> 79ac3b5e62c192e11edf7beb7e06cda90bf26d5d
                         for (i in self.Pois) {
                             $scope.heart[i] = $scope.default_image;
                         }
@@ -112,7 +106,6 @@ span.onclick = function() {
                     $scope.heart[i] = "https://www.warrenstore.com/wp-content/uploads/2015/06/clipart-heart-LiKzza9ia.png"
                     $scope.flag[i] = 2;
 
-<<<<<<< HEAD
 
         $scope.like_poi = function (poi_name, i) {
             var data = { 'poiName': poi_name };
@@ -134,7 +127,6 @@ span.onclick = function() {
                 $scope.flag[i] = 1;
             }
         }
-=======
                     // $http.put('http://localhost:3000/privateUser/addFavoritePoi', data, {
                     //     headers: {
                     //         'Content-Type': 'application/json',
@@ -156,7 +148,6 @@ span.onclick = function() {
                         $rootScope.favList.push(poi_name);
                         $rootScope.countFavorite += 1;
                     }
->>>>>>> 79ac3b5e62c192e11edf7beb7e06cda90bf26d5d
 
         $scope.AddReview = function (str){
 
