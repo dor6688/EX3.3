@@ -15,14 +15,14 @@
     <div class="user">
         <div id="signup" class="active">
             <table align="center" cellpadding="10" ng-app="myApp" ng-controller="registerController">
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
 
                 <!----- First Name ---------------------------------------------------------->
                 <tr>
@@ -46,7 +46,7 @@
                 <tr>
                     <td>User Name</td>
                     <td>
-                        <input type="text" maxlength="30" placeholder="Enter Username" ng-model="username" pattern="(a-Z)" />
+                        <input type="text" maxlength="30" placeholder="Enter Username" ng-model="username" />
                         <br>(only letters and between 3 to 8 characters)
                         <h1>{{username}}</h1>
                     </td>
@@ -60,7 +60,7 @@
                             pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
                             title="Must contain at least one number and letter, and between 5 to 10 characters"
                             ng-model="password" required />
-                            <br>(at least one number and one uppercase and lowercase letter, and between 5 to 10 characters)
+                        <br>(at least one number and one uppercase and lowercase letter, and between 5 to 10 characters)
                         <h1>{{password}}</h1>
                     </td>
                 </tr>

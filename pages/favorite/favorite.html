@@ -6,9 +6,9 @@
     <title>Poi</title>
 </head>
 
-<body ng-app="myApp" ng-controller="poiController">
+<body ng-app="myApp" ng-controller="favoriteController">
 
-    <h1>Poi</h1>
+    <h1>Favorite</h1>
 
     <div id="poi" class="active">
         <div id="bar_search" align="center">
@@ -36,7 +36,7 @@
                 <td align="center" style="font-size: 30px"><b>Information</b></td>
                 <td align="center" style="font-size: 30px"><b>Image</b></td>
             </tr>
-            <tr ng-repeat="(id, poi) in poiCtrl.Pois">
+            <tr ng-repeat="(id, poi) in favoriteCtrl.Pois">
                 <td style="width:40%">
                     <b style="font-size: 25px">Poi Name:</b> <span ng-bind="poi.poiName"></span><br>
                     <br>

@@ -1,12 +1,12 @@
 // poi controller
 angular.module("myApp")
-    .controller("poiController", function ($scope, $http, $rootScope) {
+    .controller("favoriteController", function ($scope, $http, $rootScope) {
         self = this;
         $scope.selectCategory;
         $scope.cat_name;
         $scope.empty_result;
         $scope.heart = [];
-        $scope.flag = [1,1];
+        $scope.flag = [];
         $http.get('http://localhost:3000/points/getCategories').then(function (response) {
             $scope.Categories = response.data;
         });
@@ -17,6 +17,7 @@ angular.module("myApp")
                     $scope.default_image = "https://upload.wikimedia.org/wikipedia/commons/b/b9/GJL-fft-herz.svg";
                         for(i in self.Pois){
                             $scope.heart[i] = $scope.default_image;
+                            $scope.flag[i] = 1;
                         }
                 }, function (error) {
                     window.alert("NO !")
@@ -32,6 +33,7 @@ angular.module("myApp")
                         $scope.default_image = "https://upload.wikimedia.org/wikipedia/commons/b/b9/GJL-fft-herz.svg";
                         for(i in self.Pois){
                             $scope.heart[i] = $scope.default_image;
+                            $scope.flag[i] = 1;
                         }
                     }
                 }, function (error) {
@@ -78,10 +80,5 @@ angular.module("myApp")
                 $scope.flag[i] = 1;
             }
         }
-
-
-
-
-
     });
 

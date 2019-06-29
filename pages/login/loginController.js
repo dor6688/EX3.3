@@ -5,10 +5,10 @@ angular.module("myApp")
 
         self = this;
         $scope.token;
-        $scope.UserName = "";
+        $scope.UserName = "sdv";
         $scope.Question1 = "";
         $scope.Question2 = "";
-        $scope.password = "";
+        $scope.password = "123Ssssss";
         $rootScope.userNameLogged;
         $scope.forgot = false;
         $scope.success=false;

@@ -10,13 +10,11 @@ app.config(function($routeProvider)  {
 
         // homepage
         .when('/', {
-            // this is a template
             templateUrl: 'pages/home/home.html',
             controller : 'homeController as homeCtrl'
         })
         // about
         .when('/about', {
-            // this is a template url
             templateUrl: 'pages/about/about.html',
             controller : 'aboutController as abtCtrl'
         })
@@ -40,6 +38,10 @@ app.config(function($routeProvider)  {
          .when('/restore', {
             templateUrl: 'pages/restore/restore.html',
             controller : 'restoreController as restoreCtrl'
+        })
+        .when('/favorite', {
+            templateUrl: 'pages/favorite/favorite.html',
+            controller : 'favoriteController as favoriteCtrl'
         })
         
        // other
