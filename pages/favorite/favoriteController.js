@@ -8,15 +8,14 @@ angular.module("myApp")
         $scope.heart = [];
         $scope.flag = [];
         $scope.all_pois_favorite = [];
-        $rootScope.countFavorite;
+        
+        
 
         $scope.default_image = "https://www.warrenstore.com/wp-content/uploads/2015/06/clipart-heart-LiKzza9ia.png";
 
         $http.get('http://localhost:3000/points/getCategories').then(function (response) {
             $scope.Categories = response.data;
         });
-
-        var data = { 'poiName': "glazersh" };
 
         $http.get('http://localhost:3000/privateUser/getFavPois', {
             headers: {
@@ -28,6 +27,10 @@ angular.module("myApp")
                 self.all_pois_favorite = response.data;
                 self.Pois = self.all_pois_favorite;
                 $rootScope.countFavorite = self.all_pois_favorite.length;
+
+                
+
+
                 if (self.Pois.length == 0) {
                     window.alert("Sorry, didn't found anything... ")
                 } else {

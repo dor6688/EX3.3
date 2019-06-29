@@ -31,6 +31,7 @@
             <button ng-click="search_by_name()">Search</button>
         </div>
 
+
         <table border="1" align="center" style="width:50%">
             <tr>
                 <td align="center" style="font-size: 30px"><b>Information</b></td>
@@ -45,10 +46,12 @@
                 <td align="center" style="width:40%">
                     <img ng-src="{{ poi.poiURL }}"
                         ng-click="open_description_window(poi.poiWatching,poi.poiDescription, poi.poiRate, poi.poiName)">
-                    <img id="{{poi}}" ng-src="{{heart[id]}}" style="width: 10%"
+                        <br>
+                    <img id="heart_img" ng-src="{{heart[id]}}" style="width: 10%"
                     ng-click="like_poi(poi.poiName,id)">
                 </td>
             </tr>
+
         </table>
 
 
