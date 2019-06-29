@@ -6,7 +6,7 @@ angular.module("myApp")
         $scope.cat_name;
         $scope.empty_result;
         $scope.heart = [];
-        $scope.flag = [1,1];
+        $scope.flag = [1, 1];
         $http.get('http://localhost:3000/points/getCategories').then(function (response) {
             $scope.Categories = response.data;
         });
@@ -15,9 +15,9 @@ angular.module("myApp")
                 .then(function (response) {
                     self.Pois = response.data;
                     $scope.default_image = "https://upload.wikimedia.org/wikipedia/commons/b/b9/GJL-fft-herz.svg";
-                        for(i in self.Pois){
-                            $scope.heart[i] = $scope.default_image;
-                        }
+                    for (i in self.Pois) {
+                        $scope.heart[i] = $scope.default_image;
+                    }
                 }, function (error) {
                     window.alert("NO !")
                 })
@@ -28,9 +28,9 @@ angular.module("myApp")
                     self.Pois = response.data;
                     if (self.Pois.length == 0) {
                         window.alert("Sorry, didn't found anything... ")
-                    }else{
+                    } else {
                         $scope.default_image = "https://upload.wikimedia.org/wikipedia/commons/b/b9/GJL-fft-herz.svg";
-                        for(i in self.Pois){
+                        for (i in self.Pois) {
                             $scope.heart[i] = $scope.default_image;
                         }
                     }
@@ -63,25 +63,36 @@ angular.module("myApp")
             if ($scope.flag[i] == 1) {
                 $scope.heart[i] = "https://www.warrenstore.com/wp-content/uploads/2015/06/clipart-heart-LiKzza9ia.png"
                 $scope.flag[i] = 2;
-                $http({
-                    url:'http://127.0.0.1:3000/privateUser/addFavoritePoi',
-                    method: "put",
+
+                $http.put('http://localhost:3000/privateUser/addFavoritePoi', data, {
                     headers: {
                         'Content-Type': 'application/json',
                         'x-auth-token': $rootScope.userToken
-                    },
-                    data : data
+                    }
                 })
+                    .then(function (response) {
+                        $rootScope.countFavorite += 1;
+                    }, function (error) {
+
+                    })
             }
             else {
                 $scope.heart[i] = "https://upload.wikimedia.org/wikipedia/commons/b/b9/GJL-fft-herz.svg"
                 $scope.flag[i] = 1;
+
+
+                $http.delete('http://localhost:3000/privateUser/deleteFavoritePoi', data, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': $rootScope.userToken
+                    }
+                })
+                    .then(function (response) {
+                        $rootScope.countFavorite -= 1;
+                    }, function (error) {
+
+                    })
             }
         }
-
-
-
-
-
     });
 
