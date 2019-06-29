@@ -21,10 +21,16 @@ angular.module("myApp")
 
             $http.post('http://localhost:3000/users/login',user )
             .then(function(response){
+                if(response.data == "user name or password are invalid")
+                window.alert("user name or password are invalid")
+                else if(response.data == "password is wrong")
+                window.alert("password is wrong")
+                else{
+                    $rootScope.userToken=response.data;
+                    $rootScope.userNameLogged=$scope.UserName;
+                    window.location.href = "#!home";
+                }
                 // check here if insert successfully
-                $rootScope.userToken=response.data;
-                $rootScope.userNameLogged=$scope.UserName;
-                window.location.href = "#!home";
             },function (error){
                 window.alert("NO !")
             })

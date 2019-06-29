@@ -22,8 +22,32 @@ angular.module("myApp")
             $scope.Categories=response.data;
 
         });
+
+        function hasLowerCase(str) {
+            return (/[a-z]/.test(str));
+        }
+
+        function hasUpperCase(str) {
+            return (/[A-Z]/.test(str));
+        }
+        function hasNumber(myString) {
+            return /\d/.test(myString);
+          }
+        
+          function onlyCharacters(str){
+            return /^[a-zA-Z]+$/.test(str);
+          }
         
         $scope.sumbit = function() {
+            if(!hasLowerCase($scope.password) || !hasUpperCase($scope.password) || !hasNumber($scope.password) || ($scope.password + '').length < 5 || ($scope.password + '').length>10)
+            {
+                alert("password must contain at least one number and one uppercase and lowercase letter, and between 5 to 10 characters")
+            }
+            else if (($scope.username + '').length>8 ||($scope.username + '').length<3  || onlyCharacters($scope.username)){
+            
+                alert("user name must contain only letters and between 3 to 8 characters" )
+            
+            }
             var new_user = {
 
                 firstname: $scope.firstname,
