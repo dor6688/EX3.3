@@ -4,9 +4,30 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Poi</title>
+
+
+
+    <!---->
+    <link data-require="bootstrap@3.3.7" data-semver="3.3.7" rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link data-require="bootstrap-css@3.*" data-semver="3.3.7" rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
+    <script data-require="angular.js@1.6.5" data-semver="1.6.5"
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script data-require="angular-animate@1.6.*" data-semver="1.6.5"
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
+    <script data-require="angular-touch@1.6.*" data-semver="1.6.2"
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-touch.js"></script>
+    <script data-require="ui-bootstrap@*" data-semver="2.5.0"
+        src="https://cdn.rawgit.com/angular-ui/bootstrap/gh-pages/ui-bootstrap-tpls-2.5.0.js"></script>
+    <!---->
 </head>
 
 <body ng-app="myApp" ng-controller="poiController">
+
+
+
+
 
     <h1>Poi</h1>
 
@@ -29,6 +50,7 @@
             </table>
 
             <button ng-click="search_by_name()">Search</button>
+            <button ng-click="sort()">Sort by rating</button>
         </div>
 
 
@@ -38,27 +60,20 @@
                 <td align="center" style="font-size: 30px"><b>Image</b></td>
             </tr>
             <tr ng-repeat="(id, poi) in poiCtrl.Pois">
+
                 <td style="width:40%">
                     <b style="font-size: 25px">Poi Name:</b> <span ng-bind="poi.poiName"></span><br>
                     <br>
                     <b style="font-size: 25px">Poi Category:</b> <span ng-bind="poi.categoryName"></span><br>
                     <br>
-                    <img height="300" width="450" ng-src={{alert_image}}>
+                    
                 </td>
                 <td align="center" style="width:40%">
-                    <img id="myImg" ng-src="{{ poi.poiURL }}">
-                    <!-- The Modal -->
-                    <div id="myModal" class="modal">
-                        <span class="close">&times;</span>
-                        <img class="modal-content" id="img01">
-                        <div id="caption"></div>
-                    </div>
-                    <img id="{{poi}}" ng-src="{{heart[id]}}" style="width: 10%" ng-click="like_poi(poi.poiName,id)">
-                    <img ng-src="{{ poi.poiURL }}"
+                    <img ng-src="{{ poi.poiURL }}"   style="height: 50%; border-radius: 50%;"
                         ng-click="open_description_window(poi.poiWatching,poi.poiDescription, poi.poiRate, poi.poiName)">
-                        <br>
-                    <img id="heart_img" ng-src="{{heart[id]}}" style="width: 10%"
-                    ng-click="like_poi(poi.poiName,id)">
+                    <img id="{{poi}}" ng-src="{{heart[id]}}" ng-show="userNameLogged" style="width: 10%"
+                        ng-click="like_poi(poi,id)">
+
                 </td>
 
 

@@ -6,30 +6,30 @@ angular.module("myApp")
         $scope.cat_name;
         $scope.empty_result;
         $scope.heart = [];
-        $scope.flag = [1, 1];
+        $scope.flag = [];
         // Get the modal
-var modal = document.getElementById("myModal");
+        var modal = document.getElementById("myModal");
 
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById("myImg");
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-/*
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
-}
-*/
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById("myImg");
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        /*
+        img.onclick = function(){
+          modal.style.display = "block";
+          modalImg.src = this.src;
+          captionText.innerHTML = this.alt;
+        }
+        */
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on <span> (x), close the modal
-/*
-span.onclick = function() { 
-  modal.style.display = "none";
-}
-*/
+        // When the user clicks on <span> (x), close the modal
+        /*
+        span.onclick = function() { 
+          modal.style.display = "none";
+        }
+        */
         $scope.flag = [];
         if ($rootScope.favList === undefined) {
             $rootScope.favList = [];
@@ -42,19 +42,20 @@ span.onclick = function() {
 
         $http.get('http://localhost:3000/points/ListOfPoints').then(function (response) {
             self.Pois = response.data;
-            for (i in self.Pois) {
+            self.allPois = [];
+            for (j in self.Pois) {
                 self.found = false;
-                angular.forEach($rootScope.favList, function (value, key) {
-                    if (value === self.Pois[i].poiName) {
 
+                for (i in $rootScope.favList) {
+                    if ($rootScope.favList[i].poiNam === self.Pois[j].poiName) {
                         self.found = true;
-                        $scope.heart[i] = $scope.redHeart;
-                        $scope.flag[i] = 2;
+                        $scope.heart[j] = $scope.redHeart;
+                        $scope.flag[j] = 2;
                     }
-                });
+                }
                 if (self.found === false) {
-                    $scope.heart[i] = $scope.default_image;
-                    $scope.flag[i] = 1;
+                    $scope.heart[j] = $scope.default_image;
+                    $scope.flag[j] = 1;
                 }
             }
         });
@@ -98,6 +99,21 @@ span.onclick = function() {
 
                 })
         }
+        $scope.oreder = 1;
+        $scope.sort = function () {
+
+            if ($scope.order == 1) {
+                $scope.order = 2;
+                self.Pois.sort(function (a, b) {
+                    return a.poiRate - b.poiRate;
+                })
+            }else{
+                $scope.order = 1;
+                self.Pois.sort(function (a, b) {
+                    return b.poiRate - a.poiRate;
+                })
+            }
+        }
 
         if ($rootScope.userToken != undefined) {
             $scope.like_poi = function (poi_name, i) {
@@ -106,27 +122,26 @@ span.onclick = function() {
                     $scope.heart[i] = "https://www.warrenstore.com/wp-content/uploads/2015/06/clipart-heart-LiKzza9ia.png"
                     $scope.flag[i] = 2;
 
-
-        $scope.like_poi = function (poi_name, i) {
-            var data = { 'poiName': poi_name };
-            if ($scope.flag[i] == 1) {
-                $scope.heart[i] = "https://www.warrenstore.com/wp-content/uploads/2015/06/clipart-heart-LiKzza9ia.png"
-                $scope.flag[i] = 2;
-                $http({
-                    url: 'http://127.0.0.1:3000/privateUser/addFavoritePoi',
-                    method: "put",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-auth-token': $rootScope.userToken
-                    },
-                    data: data
-                })
-            }
-            else {
-                $scope.heart[i] = "https://upload.wikimedia.org/wikipedia/commons/b/b9/GJL-fft-herz.svg"
-                $scope.flag[i] = 1;
-            }
-        }
+                    // $scope.like_poi = function (poi_name, i) {
+                    //     var data = { 'poiName': poi_name };
+                    //     if ($scope.flag[i] == 1) {
+                    //         $scope.heart[i] = "https://www.warrenstore.com/wp-content/uploads/2015/06/clipart-heart-LiKzza9ia.png"
+                    //         $scope.flag[i] = 2;
+                    //         $http({
+                    //             url: 'http://127.0.0.1:3000/privateUser/addFavoritePoi',
+                    //             method: "put",
+                    //             headers: {
+                    //                 'Content-Type': 'application/json',
+                    //                 'x-auth-token': $rootScope.userToken
+                    //             },
+                    //             data: data
+                    //         })
+                    //     }
+                    //     else {
+                    //         $scope.heart[i] = "https://upload.wikimedia.org/wikipedia/commons/b/b9/GJL-fft-herz.svg"
+                    //         $scope.flag[i] = 1;
+                    //     }
+                    // }
                     // $http.put('http://localhost:3000/privateUser/addFavoritePoi', data, {
                     //     headers: {
                     //         'Content-Type': 'application/json',
@@ -139,19 +154,32 @@ span.onclick = function() {
 
                     //     })
                     self.found = false;
-                    angular.forEach($scope.favList, function (value, key) {
-                        if (value === poi_name) {
+
+                    for (i in $rootScope.favList) {
+                        if ($rootScope.favList[i].poi_name === poi_name.poiName) {
                             self.found = true;
+                            window.alert(self.Pois)
                         }
-                    });
+                    }
                     if (!self.found) {
                         $rootScope.favList.push(poi_name);
-                        $rootScope.countFavorite += 1;
+                        $rootScope.countFavorite = $rootScope.favList.length;
                     }
 
-        $scope.AddReview = function (str){
+                    // angular.forEach($rootScope.favList, function (value, key) {
+                    //     if (value === poi_name.poiName) {
+                    //         self.found = true;
+                    //         window.alert(self.Pois)
+                    //     }
+                    // });
+                    // if (!self.found) {
+                    //     $rootScope.favList.push(poi_name);
+                    //     $rootScope.countFavorite = $rootScope.favList.length;
+                    // }
 
-        }
+                    $scope.AddReview = function (str) {
+
+                    }
 
 
 
@@ -165,15 +193,13 @@ span.onclick = function() {
                     angular.forEach($scope.favList, function (value, key) {
                         if (value === poi_name) {
                             self.found = true;
-                            window.alert("FOUND ! ")
-                            window.alert($rootScope.favList)
                         }
                     });
                     if (self.found === true) {
                         var index = $rootScope.favList.indexOf(poi_name);
                         $rootScope.favList.splice(index, 1);
-                        $rootScope.countFavorite -= 1;
-                        window.alert($rootScope.favList)
+                        $rootScope.countFavorite = $rootScope.favList.length;
+
                     }
 
                     // $http.delete('http://localhost:3000/privateUser/deleteFavoritePoi', data, {
