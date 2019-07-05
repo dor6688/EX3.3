@@ -1,7 +1,40 @@
-<h2>About</h2>
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- display button functionality -->
-<div>
-    <button ng-click="myFunc()">Click Me!</button>
-    <p>This button has been clicked {{ btnCount }} times.</p>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div class="first">
+
+        Rome: Ancient city with a modern twist! </div>
+    <div class="second">
+        Whether you are in Rome for 3 days, 3 weeks or 3 months, be prepared to step into the world's biggest open air
+        museum.<br>
+        Here you can find a taste of some of the beauty Rome can offer you</div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <table class = "center">
+        <tr ng-repeat="(id, poi) in abtCtrl.Pois | limitTo:3" style = "text-align: center">
+            <td>
+                    <br>
+                <div class="divName"><span ng-bind="poi.poiName"></span><br>
+                    <br>
+                    <img ng-src="{{ poi.poiURL }}" style="height: 50%; border-radius: 50%; text-align: center"><br>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+
+</body>
+
+</html>

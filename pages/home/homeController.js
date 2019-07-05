@@ -2,6 +2,8 @@ angular.module("myApp")
     .controller("homeController", function ($scope, $http, $rootScope) {
         self = this;
 
+
+
         $http.get('http://localhost:3000/points/getRandomPOI').then(function (response) {
             self.randomPois = response.data;
 
@@ -37,4 +39,28 @@ angular.module("myApp")
         }
 
 
+
+
+
     });
+angular.module("myApp").directive("modalWindow", function () {
+    return {
+        restrict: "E",
+        template: "<image ng-click='open()' class='btn btn-info' >Open Modal</image><div ng-hide='hidden' class='trans-layer'></div><div class='modal-container' ng-class='{modalactive: !hidden}' ng-transclude></div>",
+        scope: true,
+        transclude: true,
+        controller: function ($scope) {
+            $scope.hidden = true;
+            $scope.open = function () {
+                $scope.hidden = false;
+            };
+        },
+        link: function (scope, ele, attrs) {
+            $(ele).find('.trans-layer').on('click', function (event) {
+                scope.hidden = true;
+                scope.$apply();
+            })
+        }
+    }
+});
+
