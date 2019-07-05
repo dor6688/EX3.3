@@ -3,6 +3,8 @@ angular.module("myApp")
         self = this;
         $scope.review;
 
+
+
         $http.get('http://localhost:3000/points/getRandomPOI').then(function (response) {
             self.randomPois = response.data;
 
@@ -42,6 +44,9 @@ angular.module("myApp")
             }
 
         }
+
+
+
 
 
     });
