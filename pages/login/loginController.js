@@ -28,7 +28,7 @@ angular.module("myApp")
                 else{
                     $rootScope.userToken=response.data;
                     $rootScope.userNameLogged=$scope.UserName;
-                    window.location.href = "#!home";
+                    window.location.href = "#!favorite";
                 }
                 // check here if insert successfully
             },function (error){

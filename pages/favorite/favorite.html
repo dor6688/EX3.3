@@ -45,6 +45,10 @@
                     <b style="font-size: 25px">Poi Name:</b> <span ng-bind="poi.poiName"></span><br>
                     <br>
                     <b style="font-size: 25px">Poi Category:</b> <span ng-bind="poi.categoryName"></span><br>
+                    <br>
+                    <button ng-click="up(id)" style="width: 25%">UP</button>
+                    <br>
+                    <button ng-click="down(id)" style="width: 25%">DOWN</button>
                 </td>
                 <td align="center" style="width:40%">
                     <img ng-src="{{ poi.poiURL }}" style="height: 50%; border-radius: 50%;"
