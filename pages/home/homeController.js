@@ -46,7 +46,7 @@ angular.module("myApp")
 angular.module("myApp").directive("modalWindow", function () {
     return {
         restrict: "E",
-        template: "<image ng-click='open()' class='btn btn-info' >Open Modal</image><div ng-hide='hidden' class='trans-layer'></div><div class='modal-container' ng-class='{modalactive: !hidden}' ng-transclude></div>",
+        template: "<button ng-click='open()' class='btn btn-info'>{{poi.poiName}}</button><div ng-hide='hidden' class='trans-layer'></div><div class='modal-container' ng-class='{modalactive: !hidden}' ng-transclude></div>",
         scope: true,
         transclude: true,
         controller: function ($scope) {

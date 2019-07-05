@@ -16,25 +16,37 @@
 <body>
     <div class="homeBody">
         <div ng-show="userNameLogged" class="loggedInHome">
-            <div ng class="recommendedPois">
+            <div ng-class="recommendedPois">
 
-                <table>
-                    <h2>recommended Pois just for you</h2>
-
-                    <tr ng-repeat="(id, poi) in homeCtrl.recommendedPois">
-                        <td>
-                            Poi Name: <span ng-bind="poi.poiName"></span><br>
-                            Poi Description: <span ng-bind="poi.poiDescription"></span><br>
-                            Poi Rate: <span ng-bind="poi.poiRate"></span><br>
-                            Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
-                            Poi Category: <span ng-bind="poi.categoryName"></span><br>
-                            <img ng-src="{{ poi.poiURL }}" style="height: 50%; border-radius: 50%;">
-
-
-
-                        </td>
-                    </tr>
-                </table>
+                    <table class="recommendedPois">
+                            <div>
+                                <td ng-repeat="(id, poi) in homeCtrl.recommendedPois">
+                                    <div ng-controller="homeController">
+                                            <modal-window>
+                                                <div class="modal-heading"></div>
+                                                <div class="modal-cont">
+                                                        Poi Description: <span ng-bind="poi.poiDescription"></span><br>
+                                                        Poi Rate: <span ng-bind="poi.poiRate"></span><br>
+                                                        Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
+                                                        Poi Category: <span ng-bind="poi.categoryName"></span><br>
+            
+            
+                                                </div>
+                                            </modal-window>
+                                        </div>
+                                    Poi Description: <span ng-bind="poi.poiDescription"></span><br>
+                                    Poi Rate: <span ng-bind="poi.poiRate"></span><br>
+                                    Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
+                                    Poi Category: <span ng-bind="poi.categoryName"></span><br>
+            
+                                    <img ng-src="{{ poi.poiURL }}" style="height: 50%; border-radius: 50%;">
+                                   
+            
+            
+            
+                                </td>
+                            </div>
+                        </table>
 
             </div>
             <div ng class="lastSavedPoi" style="background-color:#D3D3D3;  float: right; width: 55%; padding: 1%; ">
@@ -58,21 +70,26 @@
             <table class="randomTable">
                 <div>
                     <td ng-repeat="(id, poi) in homeCtrl.randomPois">
-                        Poi Name: <span ng-bind="poi.poiName"></span><br>
+                        <div ng-controller="homeController">
+                                <modal-window>
+                                    <div class="modal-heading">Voila!</div>
+                                    <div class="modal-cont">
+                                            Poi Description: <span ng-bind="poi.poiDescription"></span><br>
+                                            Poi Rate: <span ng-bind="poi.poiRate"></span><br>
+                                            Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
+                                            Poi Category: <span ng-bind="poi.categoryName"></span><br>
+
+
+                                    </div>
+                                </modal-window>
+                            </div>
                         Poi Description: <span ng-bind="poi.poiDescription"></span><br>
                         Poi Rate: <span ng-bind="poi.poiRate"></span><br>
                         Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
                         Poi Category: <span ng-bind="poi.categoryName"></span><br>
 
                         <img ng-src="{{ poi.poiURL }}" style="height: 50%; border-radius: 50%;">
-                        <div ng-controller="homeController">
-                            <modal-window>
-                                <div class="modal-heading">Voila!</div>
-                                <div class="modal-cont">
-                                    Angular is cool.
-                                </div>
-                            </modal-window>
-                        </div>
+                       
 
 
 

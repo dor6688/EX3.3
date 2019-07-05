@@ -2,6 +2,7 @@
 
 
 .btn {
+
   background: teal;
   color: white;
   padding: 15px;
@@ -10,6 +11,8 @@
   font-size: 15px;
   font-weight: normal;
   outline: none;
+  
+  
 }
 
 .trans-layer {
@@ -35,8 +38,9 @@
   opacity: 0;
   border-radius: 3px;
   background: white;
+  /*
   border: 1px solid teal;
-  
+  */
   transform: translate(0,-200%);
   -webkit-transform: translate(0,-200%);
   
@@ -119,48 +123,9 @@ body {
   position: absolute;
   bottom: 2%;
 }
-#myImg {
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
 
 body {font-family: Arial, Helvetica, sans-serif;}
 
-@-webkit-keyframes zoom {
-  from {-webkit-transform:scale(0)} 
-  to {-webkit-transform:scale(1)}
-}
-
-@keyframes zoom {
-  from {transform:scale(0)} 
-  to {transform:scale(1)}
-}
-
-/* The Close Button */
-.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
-  .modal-content {
-    width: 100%;
-  }
-}
 
 .first{
   font-family: Verdana, Arial, Helvetica, sans-serif; font-family: Verdana, Arial, Helvetica, sans-serif;
