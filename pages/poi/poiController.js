@@ -47,13 +47,13 @@ angular.module("myApp")
                 self.found = false;
 
                 for (i in $rootScope.favList) {
-                    if ($rootScope.favList[i].poiNam === self.Pois[j].poiName) {
+                    if ($rootScope.favList[i].poiName == self.Pois[j].poiName) {
                         self.found = true;
                         $scope.heart[j] = $scope.redHeart;
                         $scope.flag[j] = 2;
                     }
                 }
-                if (self.found === false) {
+                if (self.found == false) {
                     $scope.heart[j] = $scope.default_image;
                     $scope.flag[j] = 1;
                 }
@@ -202,17 +202,7 @@ angular.module("myApp")
 
                     }
 
-                    // $http.delete('http://localhost:3000/privateUser/deleteFavoritePoi', data, {
-                    //     headers: {
-                    //         'Content-Type': 'application/json',
-                    //         'x-auth-token': $rootScope.userToken
-                    //     }
-                    // })
-                    //     .then(function (response) {
-                    //         $rootScope.countFavorite -= 1;
-                    //     }, function (error) {
-
-                    //     })
+                    
                 }
             }
         }

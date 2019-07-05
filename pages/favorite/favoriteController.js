@@ -8,36 +8,41 @@ angular.module("myApp")
         $scope.heart = [];
         $scope.flag = [];
         $scope.all_pois_favorite = [];
+
         $scope.default_image = "https://upload.wikimedia.org/wikipedia/commons/b/b9/GJL-fft-herz.svg";
         $scope.redHeart = "https://www.warrenstore.com/wp-content/uploads/2015/06/clipart-heart-LiKzza9ia.png"
 
         $http.get('http://localhost:3000/points/getCategories').then(function (response) {
             $scope.Categories = response.data;
         });
-
-        $http.get('http://localhost:3000/privateUser/getFavPois', {
-            headers: {
-                'Content-Type': 'application/json',
-                'x-auth-token': $rootScope.userToken
-            }
-        })
-            .then(function (response) {
-                self.all_pois_favorite = response.data;
-                self.Pois = self.all_pois_favorite;
-
-                self.Pois = $rootScope.favList;
-                $rootScope.countFavorite = self.Pois.length;
-                if (self.Pois.length == 0) {
-                    window.alert("Sorry, didn't found anything... ")
-                } else {
-                    for (i in self.Pois) {
-                        $scope.heart[i] = $scope.redHeart;
-                        $scope.flag[i] = 2;
-                    }
+        if ($rootScope.favList == undefined) {
+            $http.get('http://localhost:3000/privateUser/getFavPois', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth-token': $rootScope.userToken
                 }
-            }, function (error) {
-
             })
+                .then(function (response) {
+                    $scope.favInDB = response.data;
+                    self.Pois = response.data;
+                    $rootScope.favList = self.Pois;
+                    $rootScope.countFavorite = self.Pois.length;
+
+                    window.location.href = "#!home";
+                }, function (error) {
+
+                })
+        } else {
+            self.Pois = $rootScope.favList;
+            if (self.Pois.length == 0) {
+                window.alert("Sorry, didn't found anything... ")
+            } else {
+                for (i in self.Pois) {
+                    $scope.heart[i] = $scope.redHeart;
+                    $scope.flag[i] = 2;
+                }
+            }
+        }
 
         // serach by category
         $scope.search = function () {
@@ -84,20 +89,41 @@ angular.module("myApp")
 
         // save all favorite to database
         $scope.save = function () {
+            self.current_saved = response.data;
+            self.deletePois = []
+            self.notDelete = true;
 
-            for (i in self.Pois) {
-                var data = { 'poiName': self.Pois[i].poiName };
-                $http({
-                    url: 'http://127.0.0.1:3000/privateUser/addFavoritePoi',
-                    method: "put",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-auth-token': $rootScope.userToken
-                    },
-                    data: data
-                })
+            for (i in self.current_saved) {
+                for (j in self.Pois) {
+                    if (self.current_saved[i].poiName == self.Pois[j].poiName) {
+                        self.notDelete = false;
+                        break;
+                    }
+                }
+                if (self.notDelete) {
+                    self.deletePois.push(self.current_saved[i]);
+                }
             }
+
+
+            self.addPois = [];
+            self.notAdd = true;
+
+            for (j in self.Pois) {
+                for (i in self.current_saved) {
+                    if (self.current_saved[i].poiName == self.Pois[j].poiName) {
+                        self.notAdd = false;
+                        break;
+                    }
+                }
+                if (self.notAdd) {
+                    self.addPois.push(self.Pois[j]);
+                }
+            }
+            window.alert(self.addPois);
+            window.alert(self.deletePois);
         }
+
 
         // search by specific name
         $scope.search_by_name = function () {
@@ -150,39 +176,64 @@ angular.module("myApp")
 
                 })
         }
+        $scope.up = function (id) {
+            self.i = 0;
+            while (self.i < $rootScope.favList.length) {
+                if (self.i == id && self.i > 0) {
+                    self.tmp = $rootScope.favList[self.i - 1];
+                    $rootScope.favList[self.i - 1] = $rootScope.favList[self.i];
+                    $rootScope.favList[self.i] = self.tmp;
+                    break;
+                }
+                self.i += 1;
+            }
+            window.location.href = "#!favorite";
+        }
+
+        $scope.down = function (id) {
+            self.i = 0;
+            while (self.i < $rootScope.favList.length) {
+                if (self.i == id && self.i < $rootScope.favList.length - 1) {
+                    self.tmp = $rootScope.favList[self.i + 1];
+                    $rootScope.favList[self.i + 1] = $rootScope.favList[self.i];
+                    $rootScope.favList[self.i] = self.tmp;
+                    break;
+                }
+                self.i += 1;
+            }
+            window.location.href = "#!favorite";
+        }
+
+
         // when dislike a poi 
         $scope.like_poi = function (poi_name, i) {
             var data = { 'poiName': poi_name };
-            if ($scope.flag[i] == 1) {
-                $scope.heart[i] = "https://www.warrenstore.com/wp-content/uploads/2015/06/clipart-heart-LiKzza9ia.png"
-                $scope.flag[i] = 2;
+            $http.delete('http://localhost:3000/privateUser/removeFavPoi', data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth-token': $rootScope.userToken
+                }
+            })
+                .then(function (response) {
+                    for (i in $rootScope.favList) {
+                        if ($rootScope.favList[i].poiName === poi_name) {
+                            self.found = true;
+                            $scope.heart[i] = self.default_image;
+                            $scope.flag[i] = 1;
 
-            }
-            else {
-                $scope.heart[i] = "https://upload.wikimedia.org/wikipedia/commons/b/b9/GJL-fft-herz.svg"
-                $scope.flag[i] = 1;
+                            var index = $rootScope.favList.findIndex(poi => poi.poiName == poi_name);
+                            $rootScope.favList.splice(index, 1);
+                            $rootScope.countFavorite = $rootScope.favList.length;
+                            break;
 
-
-                for (i in $rootScope.favList) {
-                    if ($rootScope.favList[i].poiName === poi_name) {
-                        self.found = true;
-                        $scope.heart[j] = self.default_image;
-                        $scope.flag[j] = 1;
-
-                        var index = $rootScope.favList.findIndex(poi => poi.poiName == poi_name);
-                        $rootScope.favList.splice(index, 1);
-                        $rootScope.countFavorite = $rootScope.favList.length;
-                        break;
-
+                        }
                     }
-                }
-                if (self.found === false) {
-                    $scope.heart[j] = $scope.$scope.redHeart;
-                    $scope.flag[j] = 2;
-                } else {
-                    window.location.href = "#!favorite";
-                }
-            }
+                }, function (error) {
+
+                })
+            //window.location.href = "#!favorite";
+
+
         }
     });
 
