@@ -15,7 +15,9 @@ angular.module("myApp")
         $http.get('http://localhost:3000/points/getCategories').then(function (response) {
             $scope.Categories = response.data;
         });
+
         if ($rootScope.favList == undefined) {
+            alert("HRER")
             $http.get('http://localhost:3000/privateUser/getFavPois', {
                 headers: {
                     'Content-Type': 'application/json',
@@ -207,6 +209,7 @@ angular.module("myApp")
 
         // when dislike a poi 
         $scope.like_poi = function (poi_name, i) {
+            alert($rootScope.userToken)
             var data = { 'poiName': poi_name };
             $http.delete('http://localhost:3000/privateUser/removeFavPoi', data, {
                 headers: {
@@ -231,6 +234,8 @@ angular.module("myApp")
                 }, function (error) {
 
                 })
+
+
             //window.location.href = "#!favorite";
 
 

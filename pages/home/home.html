@@ -16,26 +16,6 @@
 <body>
     <div class="homeBody">
         <div ng-show="userNameLogged" class="loggedInHome">
-<<<<<<< HEAD
-            <div ng-class="recommendedPois">
-
-                    <table class="recommendedPois">
-                            <div>
-                                <td ng-repeat="(id, poi) in homeCtrl.recommendedPois">
-                                    <div ng-controller="homeController">
-                                            <modal-window>
-                                                <div class="modal-heading"></div>
-                                                <div class="modal-cont">
-                                                        Poi Description: <span ng-bind="poi.poiDescription"></span><br>
-                                                        Poi Rate: <span ng-bind="poi.poiRate"></span><br>
-                                                        Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
-                                                        Poi Category: <span ng-bind="poi.categoryName"></span><br>
-            
-            
-                                                </div>
-                                            </modal-window>
-                                        </div>
-=======
             <div ng class="recommendedPois">
 
                 <table>
@@ -46,22 +26,10 @@
                             <modal-window>
                                 <div class="modal-heading">{{poi.poiName}}</div>
                                 <div class="modal-cont">
->>>>>>> 28cf870f637393bf3b9d62695891c1ce44fb37b5
                                     Poi Description: <span ng-bind="poi.poiDescription"></span><br>
                                     Poi Rate: <span ng-bind="poi.poiRate"></span><br>
                                     Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
                                     Poi Category: <span ng-bind="poi.categoryName"></span><br>
-<<<<<<< HEAD
-            
-                                    <img ng-src="{{ poi.poiURL }}" style="height: 50%; border-radius: 50%;">
-                                   
-            
-            
-            
-                                </td>
-                            </div>
-                        </table>
-=======
                                     Poi Rate: 
                                     <select ng-model="selectRate">
                                         <option value="1">1</option>
@@ -88,7 +56,6 @@
                         </td>
                     </tr>
                 </table>
->>>>>>> 28cf870f637393bf3b9d62695891c1ce44fb37b5
 
             </div>
             <div ng class="lastSavedPoi" style="background-color:#D3D3D3;  float: right; width: 55%; padding: 1%; ">
@@ -123,20 +90,6 @@
                 <div>
                     <td ng-repeat="(id, poi) in homeCtrl.randomPois">
                         <div ng-controller="homeController">
-<<<<<<< HEAD
-                                <modal-window>
-                                    <div class="modal-heading">Voila!</div>
-                                    <div class="modal-cont">
-                                            Poi Description: <span ng-bind="poi.poiDescription"></span><br>
-                                            Poi Rate: <span ng-bind="poi.poiRate"></span><br>
-                                            Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
-                                            Poi Category: <span ng-bind="poi.categoryName"></span><br>
-
-
-                                    </div>
-                                </modal-window>
-                            </div>
-=======
                             <modal-window>
                                 <div class="modal-heading">{{poi.poiName}}</div>
                                 <div class="modal-cont">
@@ -147,20 +100,13 @@
                                 </div>
                             </modal-window>
                         </div>
->>>>>>> 28cf870f637393bf3b9d62695891c1ce44fb37b5
                         Poi Description: <span ng-bind="poi.poiDescription"></span><br>
                         Poi Rate: <span ng-bind="poi.poiRate"></span><br>
                         Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
                         Poi Category: <span ng-bind="poi.categoryName"></span><br>
 
                         <img ng-src="{{ poi.poiURL }}" style="height: 50%; border-radius: 50%;">
-<<<<<<< HEAD
-                       
-=======
->>>>>>> 28cf870f637393bf3b9d62695891c1ce44fb37b5
-
-
-
+ 
                     </td>
                 </div>
             </table>

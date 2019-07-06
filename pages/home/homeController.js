@@ -38,9 +38,9 @@ angular.module("myApp")
                     window.alert("NO !")
                 })
 
-            $scope.addReview = function(value){
-                self.text  = $scope.review;
-                window.alert($scope.review);
+            $scope.addReview = function(value, rate){
+                window.alert(value);
+                window.alert(rate);
             }
 
         }
@@ -72,4 +72,3 @@ angular.module("myApp").directive("modalWindow", function () {
             }
         }
     });
-
