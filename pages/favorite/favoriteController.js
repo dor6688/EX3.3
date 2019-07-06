@@ -8,6 +8,8 @@ angular.module("myApp")
         $scope.heart = [];
         $scope.flag = [];
         $scope.all_pois_favorite = [];
+        $scope.review1;
+        $scope.review2;
 
         $scope.default_image = "https://upload.wikimedia.org/wikipedia/commons/b/b9/GJL-fft-herz.svg";
         $scope.redHeart = "https://www.warrenstore.com/wp-content/uploads/2015/06/clipart-heart-LiKzza9ia.png"
@@ -91,39 +93,39 @@ angular.module("myApp")
 
         // save all favorite to database
         $scope.save = function () {
-            self.current_saved = response.data;
-            self.deletePois = []
-            self.notDelete = true;
-
-            for (i in self.current_saved) {
-                for (j in self.Pois) {
-                    if (self.current_saved[i].poiName == self.Pois[j].poiName) {
-                        self.notDelete = false;
-                        break;
-                    }
-                }
-                if (self.notDelete) {
-                    self.deletePois.push(self.current_saved[i]);
-                }
-            }
-
-
-            self.addPois = [];
-            self.notAdd = true;
 
             for (j in self.Pois) {
-                for (i in self.current_saved) {
-                    if (self.current_saved[i].poiName == self.Pois[j].poiName) {
-                        self.notAdd = false;
-                        break;
+                var data = { 'poiName': self.Pois[j].poiName }
+                $http.put('http://localhost:3000/privateUser/addFavoritePoi', data, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': $rootScope.userToken
                     }
-                }
-                if (self.notAdd) {
-                    self.addPois.push(self.Pois[j]);
-                }
+                })
+                    .then(function (response) {
+                    }, function (error) {
+
+                    })
             }
-            window.alert(self.addPois);
-            window.alert(self.deletePois);
+        }
+        $scope.addReview = function (value, rate, poi) {
+            var new_review = {
+                poiName: poi,
+                poiReview: value,
+                rank: rate
+            }
+            $http.post('http://localhost:3000/privateUser/addReview', new_review, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth-token': $rootScope.userToken
+                }
+            })
+                .then(function (response) {
+                    window.alert("Thank you for your review !");
+                }, function (error) {
+                    window.alert("NO 5!")
+                })
+
         }
 
 
@@ -211,7 +213,8 @@ angular.module("myApp")
         $scope.like_poi = function (poi_name, i) {
             alert($rootScope.userToken)
             var data = { 'poiName': poi_name };
-            $http.delete('http://localhost:3000/privateUser/removeFavPoi', data, {
+            $http.delete('http://localhost:3000/privateUser/removeFavPoi', {
+                data,
                 headers: {
                     'Content-Type': 'application/json',
                     'x-auth-token': $rootScope.userToken
@@ -236,9 +239,5 @@ angular.module("myApp")
                 })
 
 
-            //window.location.href = "#!favorite";
-
-
         }
     });
-

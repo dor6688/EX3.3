@@ -24,13 +24,20 @@
                     <tr ng-repeat="(id, poi) in homeCtrl.recommendedPois">
                         <td>
                             <modal-window>
-                                <div class="modal-heading">{{poi.poiName}}</div>
+                                <div class="modal-heading"><b>{{poi.poiName}}</b></div>
                                 <div class="modal-cont">
-                                    Poi Description: <span ng-bind="poi.poiDescription"></span><br>
-                                    Poi Rate: <span ng-bind="poi.poiRate"></span><br>
-                                    Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
-                                    Poi Category: <span ng-bind="poi.categoryName"></span><br>
-                                    Poi Rate: 
+                                    <b>Poi Description:</b> <span ng-bind="poi.poiDescription"></span><br>
+                                    <b>Poi Rate:</b> <span ng-bind="poi.poiRate"></span><br>
+                                    <b>Poi Watching:</b> <span ng-bind="poi.poiWatching"></span><br>
+                                    <b>Poi Category: </b><span ng-bind="poi.categoryName"></span><br>
+                                    <b>Poi last 2 review:</b>
+                                    <br>
+                                    <b>1) <span ng-bind="poi.date_review1"></span></b><span
+                                        ng-bind="poi.review1"></span><br>
+                                    <b>2) <span ng-bind="poi.date_review2"></span></b><span
+                                        ng-bind="poi.review2"></span><br>
+
+                                    <b>Poi Rate:</b>
                                     <select ng-model="selectRate">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -38,17 +45,14 @@
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select><br>
-                                    Poi Review: <input type="text" placeholder="review here..." ng-model="review" /><br>
-                                    <button ng-click="addReview(review, selectRate)" style="width: 25%">Sumbit</button>
-                                    <h1>{{review}}</h1>
-                                    
+                                    <b>Poi Review:</b> <input type="text" placeholder="review here..."
+                                        ng-model="review" /><br>
+                                    <button ng-click="addReview(review, selectRate, poi.poiName)"
+                                        style="width: 25%">Submit</button>
                                 </div>
                             </modal-window>
                             <br>
-                            Poi Description: <span ng-bind="poi.poiDescription"></span><br>
-                            Poi Rate: <span ng-bind="poi.poiRate"></span><br>
-                            Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
-                            Poi Category: <span ng-bind="poi.categoryName"></span><br>
+                            Category: <span ng-bind="poi.categoryName"></span><br>
                             <img ng-src="{{ poi.poiURL }}" style="height: 50%; border-radius: 50%;">
 
 
@@ -64,20 +68,35 @@
                     <tr ng-repeat="(id, poi) in homeCtrl.lastSaved">
                         <td>
                             <modal-window>
-                                <div class="modal-heading">{{poi.poiName}}</div>
+                                <div class="modal-heading"><b>{{poi.poiName}}</b></div>
                                 <div class="modal-cont">
+                                    <b>Poi Description:</b> <span ng-bind="poi.poiDescription"></span><br>
+                                    <b>Poi Rate:</b> <span ng-bind="poi.poiRate"></span><br>
+                                    <b>Poi Watching:</b> <span ng-bind="poi.poiWatching"></span><br>
+                                    <b>Poi Category: </b><span ng-bind="poi.categoryName"></span><br>
+                                    <b>Poi last 2 review:</b>
+                                    <br>
+                                    <b>1) <span ng-bind="poi.date_review1"></span></b><span
+                                        ng-bind="poi.review1"></span><br>
+                                    <b>2) <span ng-bind="poi.date_review2"></span></b><span
+                                        ng-bind="poi.review2"></span><br>
 
-                                    Poi Description: <span ng-bind="poi.poiDescription"></span><br>
-                                    Poi Rate: <span ng-bind="poi.poiRate"></span><br>
-                                    Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
-                                    Poi Category: <span ng-bind="poi.categoryName"></span><br>
+                                    <b>Poi Rate:</b>
+                                    <select ng-model="selectRate">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select><br>
+                                    <b>Poi Review:</b> <input type="text" placeholder="review here..."
+                                        ng-model="review" /><br>
+                                    <button ng-click="addReview(review, selectRate, poi.poiName)"
+                                        style="width: 25%">Submit</button>
                                 </div>
                             </modal-window>
                             <br>
-                            Poi Description: <span ng-bind="poi.poiDescription"></span><br>
-                            Poi Rate: <span ng-bind="poi.poiRate"></span><br>
-                            Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
-                            Poi Category: <span ng-bind="poi.categoryName"></span><br>
+                            Category: <span ng-bind="poi.categoryName"></span><br>
                             <img ng-src="{{ poi.poiURL }}" style="height: 50%; border-radius: 50%;">
                         </td>
                     </tr>
@@ -91,22 +110,23 @@
                     <td ng-repeat="(id, poi) in homeCtrl.randomPois">
                         <div ng-controller="homeController">
                             <modal-window>
-                                <div class="modal-heading">{{poi.poiName}}</div>
+                                <div class="modal-heading"><b>{{poi.poiName}}</b></div>
                                 <div class="modal-cont">
-                                    Poi Description: <span ng-bind="poi.poiDescription"></span><br>
-                                    Poi Rate: <span ng-bind="poi.poiRate"></span><br>
-                                    Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
-                                    Poi Category: <span ng-bind="poi.categoryName"></span><br>
+                                    <b>Poi Description: </b><span ng-bind="poi.poiDescription"></span><br>
+                                    <b>Poi Rate: </b><span ng-bind="poi.poiRate"></span><br>
+                                    <b>Poi Watching: </b><span ng-bind="poi.poiWatching"></span><br>
+                                    <b>Poi Category: </b><span ng-bind="poi.categoryName"></span><br>
+                                    <b>Poi last 2 review:</b>
+                                    <br>
+                                    <b>1) <span ng-bind="poi.date_review1"></span></b><span
+                                        ng-bind="poi.review1"></span><br>
+                                    <b>2) <span ng-bind="poi.date_review2"></span></b><span
+                                        ng-bind="poi.review2"></span><br>
                                 </div>
                             </modal-window>
                         </div>
-                        Poi Description: <span ng-bind="poi.poiDescription"></span><br>
-                        Poi Rate: <span ng-bind="poi.poiRate"></span><br>
-                        Poi Watching: <span ng-bind="poi.poiWatching"></span><br>
                         Poi Category: <span ng-bind="poi.categoryName"></span><br>
-
                         <img ng-src="{{ poi.poiURL }}" style="height: 50%; border-radius: 50%;">
- 
                     </td>
                 </div>
             </table>

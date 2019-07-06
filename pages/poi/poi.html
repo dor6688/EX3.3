@@ -62,14 +62,40 @@
             <tr ng-repeat="(id, poi) in poiCtrl.Pois">
 
                 <td style="width:40%">
-                    <b style="font-size: 25px">Poi Name:</b> <span ng-bind="poi.poiName"></span><br>
+                    <b style="font-size: 25px">Poi Name:</b>
+                    <modal-window>
+                        <div class="modal-heading"><b>{{poi.poiName}}</b></div>
+                        <div class="modal-cont">
+                            <b>Poi Description: </b><span ng-bind="poi.poiDescription"></span><br>
+                            <b>Poi Rate: </b><span ng-bind="poi.poiRate"></span><br>
+                            <b>Poi Watching: </b><span ng-bind="poi.poiWatching"></span><br>
+                            <b>Poi Category: </b><span ng-bind="poi.categoryName"></span><br>
+                            <b>Poi last 2 review:</b>
+                            <br>
+                            <b>1) <span ng-bind="poi.date_review1"></span></b><span ng-bind="poi.review1"></span><br>
+                            <b>2) <span ng-bind="poi.date_review2"></span></b><span ng-bind="poi.review2"></span><br>
+                            <b ng-show="userNameLogged"> Poi Rate:</b>
+                            <select ng-model="selectRate" ng-show="userNameLogged">
+                                
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select><br>
+                            <b ng-show="userNameLogged">Poi Review:</b> <input type="text" placeholder="review here..." ng-model="review"
+                                ng-show="userNameLogged" /><br>
+                            <button ng-click="addReview(review, selectRate, poi.poiName)" ng-show="userNameLogged"
+                                style="width: 25%">Submit</button>
+                        </div>
+                    </modal-window>
                     <br>
                     <b style="font-size: 25px">Poi Category:</b> <span ng-bind="poi.categoryName"></span><br>
                     <br>
-                    
+
                 </td>
                 <td align="center" style="width:40%">
-                    <img ng-src="{{ poi.poiURL }}"   style="height: 50%; border-radius: 50%;"
+                    <img ng-src="{{ poi.poiURL }}" style="height: 50%; border-radius: 50%;"
                         ng-click="open_description_window(poi.poiWatching,poi.poiDescription, poi.poiRate, poi.poiName)">
                     <img id="{{poi}}" ng-src="{{heart[id]}}" ng-show="userNameLogged" style="width: 10%"
                         ng-click="like_poi(poi,id)">

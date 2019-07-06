@@ -7,30 +7,7 @@ angular.module("myApp")
         $scope.empty_result;
         $scope.heart = [];
         $scope.flag = [];
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        // Get the image and insert it inside the modal - use its "alt" text as a caption
-        var img = document.getElementById("myImg");
-        var modalImg = document.getElementById("img01");
-        var captionText = document.getElementById("caption");
-        /*
-        img.onclick = function(){
-          modal.style.display = "block";
-          modalImg.src = this.src;
-          captionText.innerHTML = this.alt;
-        }
-        */
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks on <span> (x), close the modal
-        /*
-        span.onclick = function() { 
-          modal.style.display = "none";
-        }
-        */
-        $scope.flag = [];
+        
         if ($rootScope.favList === undefined) {
             $rootScope.favList = [];
         }
@@ -87,6 +64,26 @@ angular.module("myApp")
 
                 })
         }
+        $scope.addReview = function (value, rate, poi) {
+            var new_review = {
+                poiName: poi,
+                poiReview: value,
+                rank: rate
+            }
+            $http.post('http://localhost:3000/privateUser/addReview', new_review, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth-token': $rootScope.userToken
+                }
+            })
+                .then(function (response) {
+                    window.alert("Thank you for your review !");
+                }, function (error) {
+                    window.alert("NO 5!")
+                })
+
+        }
+
         $scope.open_description_window = function (poi_watch, poi_desc, poi_rate, poi_name) {
             var poi_name_jason = {
                 poiName: poi_name
@@ -122,37 +119,6 @@ angular.module("myApp")
                     $scope.heart[i] = "https://www.warrenstore.com/wp-content/uploads/2015/06/clipart-heart-LiKzza9ia.png"
                     $scope.flag[i] = 2;
 
-                    // $scope.like_poi = function (poi_name, i) {
-                    //     var data = { 'poiName': poi_name };
-                    //     if ($scope.flag[i] == 1) {
-                    //         $scope.heart[i] = "https://www.warrenstore.com/wp-content/uploads/2015/06/clipart-heart-LiKzza9ia.png"
-                    //         $scope.flag[i] = 2;
-                    //         $http({
-                    //             url: 'http://127.0.0.1:3000/privateUser/addFavoritePoi',
-                    //             method: "put",
-                    //             headers: {
-                    //                 'Content-Type': 'application/json',
-                    //                 'x-auth-token': $rootScope.userToken
-                    //             },
-                    //             data: data
-                    //         })
-                    //     }
-                    //     else {
-                    //         $scope.heart[i] = "https://upload.wikimedia.org/wikipedia/commons/b/b9/GJL-fft-herz.svg"
-                    //         $scope.flag[i] = 1;
-                    //     }
-                    // }
-                    // $http.put('http://localhost:3000/privateUser/addFavoritePoi', data, {
-                    //     headers: {
-                    //         'Content-Type': 'application/json',
-                    //         'x-auth-token': $rootScope.userToken
-                    //     }
-                    // })
-                    //     .then(function (response) {
-                    //         $rootScope.countFavorite += 1;
-                    //     }, function (error) {
-
-                    //     })
                     self.found = false;
 
                     for (i in $rootScope.favList) {
@@ -165,23 +131,6 @@ angular.module("myApp")
                         $rootScope.favList.push(poi_name);
                         $rootScope.countFavorite = $rootScope.favList.length;
                     }
-
-                    // angular.forEach($rootScope.favList, function (value, key) {
-                    //     if (value === poi_name.poiName) {
-                    //         self.found = true;
-                    //         window.alert(self.Pois)
-                    //     }
-                    // });
-                    // if (!self.found) {
-                    //     $rootScope.favList.push(poi_name);
-                    //     $rootScope.countFavorite = $rootScope.favList.length;
-                    // }
-
-                    $scope.AddReview = function (str) {
-
-                    }
-
-
 
                 }
                 else {
