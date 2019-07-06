@@ -48,7 +48,7 @@ angular.module("myApp")
                 alert("user name must contain only letters and between 3 to 8 characters")
 
             }
-            else if($scope.selectCategory1.categoryName1 == $scope.selectCategory2.categoryName2){
+            else if($scope.selectCategory1.categoryName == $scope.selectCategory2.categoryName){
                 alert("Categories must be different. please select different category")
 
             }
@@ -66,8 +66,8 @@ angular.module("myApp")
                     ans1: $scope.a1,
                     q2: $scope.q2,
                     ans2: $scope.a2,
-                    cn: $scope.selectCategory.categoryName1,
-                    cn: $scope.selectCategory.categoryName2,
+                    cn: $scope.selectCategory1.categoryName,
+                    cn2: $scope.selectCategory2.categoryName,
                 }
                 $http.post('http://localhost:3000/users/addUser', new_user)
                     .then(function (response) {
