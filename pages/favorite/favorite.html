@@ -27,7 +27,7 @@
                     </td>
                 </tr>
             </table>
-            
+
             <button ng-click="sort()">Sort by rating</button>
             <br>
             <button ng-click="search_by_name()">Search</button>
@@ -42,7 +42,31 @@
             </tr>
             <tr ng-repeat="(id, poi) in favoriteCtrl.Pois">
                 <td style="width:40%">
-                    <b style="font-size: 25px">Poi Name:</b> <span ng-bind="poi.poiName"></span><br>
+                    <b style="font-size: 25px">Poi Name:</b>
+                    <modal-window>
+                        <div class="modal-heading"><b>{{poi.poiName}}</b></div>
+                        <div class="modal-cont">
+                            <b>Poi Description: </b><span ng-bind="poi.poiDescription"></span><br>
+                            <b>Poi Rate: </b><span ng-bind="poi.poiRate"></span><br>
+                            <b>Poi Watching: </b><span ng-bind="poi.poiWatching"></span><br>
+                            <b>Poi Category: </b><span ng-bind="poi.categoryName"></span><br>
+                            <b>Poi last 2 review:</b>
+                            <br>
+                            <b>1) <span ng-bind="poi.date_review1"></span></b><span ng-bind="poi.review1"></span><br>
+                            <b>2) <span ng-bind="poi.date_review2"></span></b><span ng-bind="poi.review2"></span><br>
+                            <b>Poi Rate:</b>
+                            <select ng-model="selectRate">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select><br>
+                            <b>Poi Review:</b> <input type="text" placeholder="review here..." ng-model="review" /><br>
+                            <button ng-click="addReview(review, selectRate, poi.poiName)"
+                                style="width: 25%">Submit</button>
+                        </div>
+                    </modal-window>
                     <br>
                     <b style="font-size: 25px">Poi Category:</b> <span ng-bind="poi.categoryName"></span><br>
                     <br>
