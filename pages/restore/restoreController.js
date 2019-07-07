@@ -2,7 +2,6 @@ angular.module("myApp")
     .controller("restoreController", function ($scope, $http, $rootScope) {
         self = this;
         $scope.UserName = "";
-        alert($rootScope.userToken);
         $scope.Questions = "";
         $scope.selectQuestion1;
         $scope.selectQuestion2;
@@ -40,11 +39,7 @@ angular.module("myApp")
                     }
 
                 }, function (error) {
-                    window.alert("NO !")
                 })
-
-
-
 
         }
 

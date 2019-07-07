@@ -45,7 +45,6 @@ angular.module("myApp")
                         $scope.heart[i] = $scope.default_image;
                     }
                 }, function (error) {
-                    window.alert("NO !")
                 })
         }
         $scope.search_by_name = function () {
@@ -79,7 +78,6 @@ angular.module("myApp")
                 .then(function (response) {
                     window.alert("Thank you for your review !");
                 }, function (error) {
-                    window.alert("NO 5!")
                 })
 
         }
@@ -124,7 +122,6 @@ angular.module("myApp")
                     for (i in $rootScope.favList) {
                         if ($rootScope.favList[i].poi_name === poi_name.poiName) {
                             self.found = true;
-                            window.alert(self.Pois)
                         }
                     }
                     if (!self.found) {

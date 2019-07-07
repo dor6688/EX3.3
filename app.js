@@ -19,10 +19,6 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/poi/poi.html',
             controller : 'poiController as poiCtrl'
         })
-        .when('/httpRequest', {
-            templateUrl: 'pages/http/request.html',
-            controller : 'httpController as httpCtrl'
-        })
         .when('/register', {
             templateUrl: 'pages/register/register.html',
             controller : 'registerController as registerCtrl'

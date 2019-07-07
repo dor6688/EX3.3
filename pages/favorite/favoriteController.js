@@ -19,7 +19,6 @@ angular.module("myApp")
         });
 
         if ($rootScope.favList == undefined) {
-            alert("HRER")
             $http.get('http://localhost:3000/privateUser/getFavPois', {
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,7 +69,6 @@ angular.module("myApp")
                         $scope.flag[i] = 2;
                     }
                 }, function (error) {
-                    window.alert("NO !")
                 })
 
         }
@@ -108,6 +106,9 @@ angular.module("myApp")
                     })
             }
         }
+     
+           
+
         $scope.addReview = function (value, rate, poi) {
             var new_review = {
                 poiName: poi,
@@ -123,7 +124,8 @@ angular.module("myApp")
                 .then(function (response) {
                     window.alert("Thank you for your review !");
                 }, function (error) {
-                    window.alert("NO 5!")
+                    if(error.data= "something went wrong")
+                    window.alert("you have already reviewed this poi")
                 })
 
         }
@@ -211,7 +213,6 @@ angular.module("myApp")
 
         // when dislike a poi 
         $scope.like_poi = function (poi_name, i) {
-            alert($rootScope.userToken)
             var data = { 'poiName': poi_name };
             $http.delete('http://localhost:3000/privateUser/removeFavPoi', {
                 data,
@@ -237,7 +238,5 @@ angular.module("myApp")
                 }, function (error) {
 
                 })
-
-
         }
     });

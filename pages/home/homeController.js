@@ -20,7 +20,6 @@ angular.module("myApp")
                     self.recommendedPois = response.data;
 
                 }, function (error) {
-                    window.alert("NO 2!")
                 })
 
 
@@ -34,7 +33,6 @@ angular.module("myApp")
                     self.lastSaved = response.data;
 
                 }, function (error) {
-                    window.alert("NO 3!")
                 })
 
             $scope.addReview = function (value, rate, poi) {
@@ -52,7 +50,6 @@ angular.module("myApp")
                     .then(function (response) {
                         window.alert("Thank you for your review !");
                     }, function (error) {
-                        window.alert("NO 5!")
                     })
 
             }
@@ -99,10 +96,5 @@ angular.module("myApp").directive("modalWindow", function () {
 
             })
         }
-<<<<<<< HEAD
-    });
-=======
     }
 });
-
->>>>>>> 68964e22f4d601a2d831bbb7ec27f3764d220cfd

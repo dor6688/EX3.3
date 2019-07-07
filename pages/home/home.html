@@ -37,18 +37,7 @@
                                     <b>2) <span ng-bind="poi.date_review2"></span></b><span
                                         ng-bind="poi.review2"></span><br>
 
-                                    <b>Poi Rate:</b>
-                                    <select ng-model="selectRate">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select><br>
-                                    <b>Poi Review:</b> <input type="text" placeholder="review here..."
-                                        ng-model="review" /><br>
-                                    <button ng-click="addReview(review, selectRate, poi.poiName)"
-                                        style="width: 25%">Submit</button>
+                                    
                                 </div>
                             </modal-window>
                             <br>
@@ -80,19 +69,6 @@
                                         ng-bind="poi.review1"></span><br>
                                     <b>2) <span ng-bind="poi.date_review2"></span></b><span
                                         ng-bind="poi.review2"></span><br>
-
-                                    <b>Poi Rate:</b>
-                                    <select ng-model="selectRate">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select><br>
-                                    <b>Poi Review:</b> <input type="text" placeholder="review here..."
-                                        ng-model="review" /><br>
-                                    <button ng-click="addReview(review, selectRate, poi.poiName)"
-                                        style="width: 25%">Submit</button>
                                 </div>
                             </modal-window>
                             <br>
@@ -127,6 +103,7 @@
                         </div>
                         Poi Category: <span ng-bind="poi.categoryName"></span><br>
                         <img ng-src="{{ poi.poiURL }}" style="height: 50%; border-radius: 50%;">
+
                     </td>
                 </div>
             </table>

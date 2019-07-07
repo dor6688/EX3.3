@@ -74,19 +74,7 @@
                             <br>
                             <b>1) <span ng-bind="poi.date_review1"></span></b><span ng-bind="poi.review1"></span><br>
                             <b>2) <span ng-bind="poi.date_review2"></span></b><span ng-bind="poi.review2"></span><br>
-                            <b ng-show="userNameLogged"> Poi Rate:</b>
-                            <select ng-model="selectRate" ng-show="userNameLogged">
-                                
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select><br>
-                            <b ng-show="userNameLogged">Poi Review:</b> <input type="text" placeholder="review here..." ng-model="review"
-                                ng-show="userNameLogged" /><br>
-                            <button ng-click="addReview(review, selectRate, poi.poiName)" ng-show="userNameLogged"
-                                style="width: 25%">Submit</button>
+                            
                         </div>
                     </modal-window>
                     <br>

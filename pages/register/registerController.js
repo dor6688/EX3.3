@@ -75,7 +75,6 @@ angular.module("myApp")
                         window.location.href = "#!login";
 
                     }, function (error) {
-                        window.alert("NO !")
                     })
             }
         }

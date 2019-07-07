@@ -31,7 +31,6 @@ angular.module("myApp")
                     }
                     // check here if insert successfully
                 }, function (error) {
-                    window.alert("NO !")
                 })
         }
 
