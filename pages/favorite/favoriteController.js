@@ -26,34 +26,53 @@ angular.module("myApp")
                 }
             })
                 .then(function (response) {
-                    $scope.favInDB = response.data;
-                    self.Pois = response.data;
-                    $rootScope.favList = self.Pois;
-                    $rootScope.countFavorite = self.Pois.length;
-
+                    $rootScope.favList = response.data;
+                    $rootScope.countFavorite = $rootScope.favList.length;
+                    $rootScope.localFav = [];
                     window.location.href = "#!home";
                 }, function (error) {
 
                 })
         } else {
-            self.Pois = $rootScope.favList;
-            if (self.Pois.length == 0) {
-                window.alert("Sorry, didn't found anything... ")
-            } else {
-                for (i in self.Pois) {
-                    $scope.heart[i] = $scope.redHeart;
-                    $scope.flag[i] = 2;
+
+            $http.get('http://localhost:3000/privateUser/getFavPois', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth-token': $rootScope.userToken
                 }
-            }
+            })
+                .then(function (response) {
+                    self.local = $rootScope.localFav;
+                    //$rootScope.favList = response.data;
+                    self.Pois = $rootScope.favList
+                    if (self.Pois.length == 0 && self.local.length == 0) {
+                        window.alert("Sorry, didn't found anything... ")
+                    } else {
+                        for (i in self.Pois) {
+                            $scope.heart[i] = $scope.redHeart;
+                            $scope.flag[i] = 2;
+                        }
+
+                        for (i in self.local) {
+                            $scope.heart[i] = $scope.redHeart;
+                            $scope.flag[i] = 2;
+                        }
+                        $rootScope.countFavorite = self.local.length + self.Pois.length;
+                    }
+                })
+
+
         }
 
         // serach by category
         $scope.search = function () {
             $http.get('http://localhost:3000/points/ListOfPointsByCategory/' + $scope.selectCategory.categoryName)
                 .then(function (response) {
-                    var cat_Pois = []
+                    var cat_Pois = [];
+                    var cat_local = [];
                     self.all_poi_in_category = response.data;
                     self.Pois = $rootScope.favList;
+                    self.local = $rootScope.localFav;
                     for (item in self.Pois) {
                         self.tmp = self.Pois[item]
                         angular.forEach(self.all_poi_in_category, function (value, key) {
@@ -65,6 +84,21 @@ angular.module("myApp")
                     self.Pois = cat_Pois;
 
                     for (i in self.Pois) {
+                        $scope.heart[i] = $scope.redHeart;
+                        $scope.flag[i] = 2;
+                    }
+
+                    for (item in self.local) {
+                        self.tmp = self.local[item]
+                        angular.forEach(self.all_poi_in_category, function (value, key) {
+                            if (value.poiName === self.tmp.poiName) {
+                                cat_local.push(self.tmp);
+                            }
+                        }, cat_Pois);
+                    }
+                    self.local = cat_local;
+
+                    for (i in self.local) {
                         $scope.heart[i] = $scope.redHeart;
                         $scope.flag[i] = 2;
                     }
@@ -81,9 +115,15 @@ angular.module("myApp")
                 self.Pois.sort(function (a, b) {
                     return a.poiRate - b.poiRate;
                 })
+                self.local.sort(function (a, b) {
+                    return a.poiRate - b.poiRate;
+                })
             } else {
                 $scope.order = 1;
                 self.Pois.sort(function (a, b) {
+                    return b.poiRate - a.poiRate;
+                })
+                self.local.sort(function (a, b) {
                     return b.poiRate - a.poiRate;
                 })
             }
@@ -92,8 +132,9 @@ angular.module("myApp")
         // save all favorite to database
         $scope.save = function () {
 
-            for (j in self.Pois) {
-                var data = { 'poiName': self.Pois[j].poiName }
+            for (j in self.local) {
+                self.Pois.push(self.local[j]);
+                var data = { 'poiName': self.local[j].poiName }
                 $http.put('http://localhost:3000/privateUser/addFavoritePoi', data, {
                     headers: {
                         'Content-Type': 'application/json',
@@ -101,13 +142,18 @@ angular.module("myApp")
                     }
                 })
                     .then(function (response) {
+
+
                     }, function (error) {
 
                     })
             }
+            window.alert("Pois saved !");
+            $rootScope.localFav = [];
+            self.local = [];
         }
-     
-           
+
+
 
         $scope.addReview = function (value, rate, poi) {
             var new_review = {
@@ -124,8 +170,8 @@ angular.module("myApp")
                 .then(function (response) {
                     window.alert("Thank you for your review !");
                 }, function (error) {
-                    if(error.data= "something went wrong")
-                    window.alert("you have already reviewed this poi")
+                    if (error.data = "something went wrong")
+                        window.alert("you have already reviewed this poi")
                 })
 
         }
@@ -137,10 +183,11 @@ angular.module("myApp")
                 .then(function (response) {
                     self.current_poi = response.data;
                     self.Pois = $rootScope.favList;
+                    self.local = $rootScope.localFav;
                     self.flag = false;
 
                     if (self.current_poi.length > 0 && $rootScope.favList.length > 0) {
-                        angular.forEach(self.all_pois_favorite, function (value, key) {
+                        angular.forEach(self.Pois, function (value, key) {
                             if (value.poiName === self.current_poi[0].poiName) {
                                 self.flag = true;
                             }
@@ -154,6 +201,23 @@ angular.module("myApp")
                         } else {
                             self.Pois = [];
                         }
+
+                        angular.forEach(self.local, function (value, key) {
+                            if (value.poiName === self.current_poi[0].poiName) {
+                                self.flag = true;
+                            }
+                        });
+                        if (self.flag) {
+                            self.local = self.current_poi;
+                            for (i in self.local) {
+                                $scope.heart[i] = $scope.redHeart;
+                                $scope.flag[i] = 2;
+                            }
+                        } else {
+                            self.local = [];
+                        }
+
+                        
 
                     } else {
                         window.alert("Sorry, didn't found anything... ")
@@ -193,7 +257,6 @@ angular.module("myApp")
                 }
                 self.i += 1;
             }
-            window.location.href = "#!favorite";
         }
 
         $scope.down = function (id) {
@@ -207,36 +270,47 @@ angular.module("myApp")
                 }
                 self.i += 1;
             }
-            window.location.href = "#!favorite";
         }
 
 
         // when dislike a poi 
         $scope.like_poi = function (poi_name, i) {
-            var data = { 'poiName': poi_name };
-            $http.delete('http://localhost:3000/privateUser/removeFavPoi', {
-                data,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-auth-token': $rootScope.userToken
+            self.inLocal = true;
+            for (k in self.local) {
+                if (self.local[k].poiName === poi_name) {
+                    var index = self.local.findIndex(poi => poi.poiName == poi_name);
+                    self.local.splice(index, 1);
+                    $rootScope.localFav = self.local;
+                    self.inLocal = false;
+                    break;
                 }
-            })
-                .then(function (response) {
-                    for (i in $rootScope.favList) {
-                        if ($rootScope.favList[i].poiName === poi_name) {
-                            self.found = true;
-                            $scope.heart[i] = self.default_image;
-                            $scope.flag[i] = 1;
+            }
 
-                            var index = $rootScope.favList.findIndex(poi => poi.poiName == poi_name);
-                            $rootScope.favList.splice(index, 1);
-                            $rootScope.countFavorite = $rootScope.favList.length;
-                            break;
-
-                        }
+            if (self.inLocal) {
+                var data = { 'poiName': poi_name };
+                $http.delete('http://localhost:3000/privateUser/removeFavPoi', {
+                    data,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': $rootScope.userToken
                     }
-                }, function (error) {
-
                 })
+                    .then(function (response) {
+                        for (i in $rootScope.favList) {
+                            if ($rootScope.favList[i].poiName === poi_name) {
+                                self.found = true;
+                                $scope.heart[i] = self.default_image;
+                                $scope.flag[i] = 1;
+
+                                var index = $rootScope.favList.findIndex(poi => poi.poiName == poi_name);
+                                $rootScope.favList.splice(index, 1);
+                                $rootScope.countFavorite = $rootScope.favList.length;
+
+                            }
+                        }
+                    }, function (error) {
+
+                    })
+            }
         }
     });

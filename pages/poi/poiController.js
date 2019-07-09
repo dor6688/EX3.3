@@ -30,6 +30,13 @@ angular.module("myApp")
                         $scope.flag[j] = 2;
                     }
                 }
+                for (i in $rootScope.localFav) {
+                    if ($rootScope.localFav[i].poiName == self.Pois[j].poiName) {
+                        self.found = true;
+                        $scope.heart[j] = $scope.redHeart;
+                        $scope.flag[j] = 2;
+                    }
+                }
                 if (self.found == false) {
                     $scope.heart[j] = $scope.default_image;
                     $scope.flag[j] = 1;
@@ -119,14 +126,20 @@ angular.module("myApp")
 
                     self.found = false;
 
+                    for (i in $rootScope.localFav) {
+                        if ($rootScope.localFav[i].poi_name === poi_name.poiName) {
+                            self.found = true;
+                        }
+                    }
                     for (i in $rootScope.favList) {
                         if ($rootScope.favList[i].poi_name === poi_name.poiName) {
                             self.found = true;
                         }
                     }
                     if (!self.found) {
-                        $rootScope.favList.push(poi_name);
-                        $rootScope.countFavorite = $rootScope.favList.length;
+                        //$rootScope.favList.push(poi_name);
+                        $rootScope.localFav.push(poi_name);
+                        $rootScope.countFavorite = $rootScope.localFav.length + $rootScope.favList.length;
                     }
 
                 }
@@ -136,17 +149,32 @@ angular.module("myApp")
 
 
                     self.found = false;
-                    angular.forEach($scope.favList, function (value, key) {
-                        if (value === poi_name) {
+                    for (i in $rootScope.localFav) {
+                        if ($rootScope.localFav[i].poiName === poi_name.poiName) {
                             self.found = true;
                         }
-                    });
+                    }
+                    
+                    if (self.found === true) {
+                        var index = $rootScope.localFav.indexOf(poi_name);
+                        $rootScope.localFav.splice(index, 1);
+                        $rootScope.countFavorite = $rootScope.localFav.length + $rootScope.favList.length;
+
+                    }
+                    self.found = false;
+                    for (i in $rootScope.favList) {
+                        if ($rootScope.favList[i].poiName === poi_name.poiName) {
+                            self.found = true;
+                        }
+                    }
+                    
                     if (self.found === true) {
                         var index = $rootScope.favList.indexOf(poi_name);
                         $rootScope.favList.splice(index, 1);
                         $rootScope.countFavorite = $rootScope.favList.length;
 
                     }
+                    
 
                     
                 }
