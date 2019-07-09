@@ -15,7 +15,6 @@
             <td>User Name</td>
             <td>
                 <input type="text" placeholder="Enter User Name" ng-model="UserName" />
-                <h1>{{UserName}}</h1>
             <td colspan="2" align="center">
                 <button ng-click="getQuestion()" ng-model="get">get the question </button>
 
@@ -26,7 +25,6 @@
             <td>Question1</td>
             <td>
                 <select ng-model=" selectQuestion1" ng-options="x.Question1 for x in Questions"></select>
-                <pre>{{selectQuestion1.Question1}}</pre>
             </td>
         </tr>
 
@@ -34,7 +32,6 @@
             <td>Answer</td>
             <td>
                 <input type="text" placeholder="Enter the answer" ng-model="answer1" />
-                <h1>{{answer1}}</h1>
             </td>
         </tr>
 
@@ -42,14 +39,12 @@
             <td>Question2</td>
             <td>
                 <select ng-model=" selectQuestion2" ng-options="x.Question2 for x in Questions"></select>
-                <h1>{{selectQuestion2.Question2}}</h1>
             </td>
         </tr>
         <tr>
             <td>Answer</td>
             <td>
                 <input type="text" placeholder="Enter the answer" ng-model="answer2" />
-                <h1>{{answer2}}</h1>
             </td>
         </tr>
 
